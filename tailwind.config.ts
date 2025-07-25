@@ -4,23 +4,24 @@ import tailwindcssAnimate from 'tailwindcss-animate';
 const config: Config = {
   darkMode: ['class'],
   content: [
-    './pages/**/*.{js,ts,jsx,tsx,mdx}',
-    './components/**/*.{js,ts,jsx,tsx,mdx}',
-    './app/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
       colors: {
         brand: {
-          '100': '#EA6365',
-          DEFAULT: '#FA7275',
+          '100': '#0c8d62',
+          '200': '#064E3B',
+          DEFAULT: '#10B981',
         },
+        coral: '#F87171',
         red: '#FF7474',
         error: '#b80000',
         green: '#3DD9B3',
         blue: '#56B8FF',
         pink: '#EEA8FD',
         orange: '#F9AB72',
+
         light: {
           '100': '#333F4E',
           '200': '#A3B2C7',
