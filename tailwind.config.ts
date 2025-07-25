@@ -72,9 +72,6 @@ const config: Config = {
           '5': 'hsl(var(--chart-5))',
         },
       },
-      fontFamily: {
-        poppins: ['var(--font-poppins)'],
-      },
       boxShadow: {
         'drop-1': '0px 10px 30px 0px rgba(66, 71, 97, 0.1)',
         'drop-2': '0 8px 30px 0 rgba(65, 89, 214, 0.3)',
