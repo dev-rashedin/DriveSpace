@@ -41,6 +41,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
 
   const formSchema = authFormSchema(type);
 
+  console.log(accountId);
+  
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -56,12 +59,13 @@ const AuthForm = ({ type }: { type: FormType }) => {
     
     try {
       const user = await createAccount({
-      fullName: values.fullName  || '',
-      email: values.email,
-    })
+        fullName: values.fullName || '',
+        email: values.email,
+      });
       
     setAccountId(user.accountId)
     } catch (error) {
+      console.error(error);
       setErrorMessage('Failed to create account. Please try again.');
     } finally {
       setIsLoading(false);

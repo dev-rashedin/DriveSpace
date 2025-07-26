@@ -24,11 +24,11 @@ const getUserByEmail = async (email: string) => {
   const result = await databases.listDocuments(
     appwriteConfig.databaseId,
     appwriteConfig.usersCollectionId,
-    [Query.equal('email', email)]
+    [Query.equal("email", [email])],
   );
 
   return result.total > 0 ? result.documents[0] : null;
-};
+}
 
 const handleError = (error: unknown, message: string) => {
   console.error(error, message);
