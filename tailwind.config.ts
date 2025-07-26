@@ -6,12 +6,16 @@ const config: Config = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)', 'sans-serif'],
+      },
       colors: {
         brand: {
           '100': '#10B981',
           '200': '#0c8d62',
           DEFAULT: '#064E3B',
         },
+        brown: '#DEDCA4',
         coral: '#F87171',
         red: '#FF7474',
         error: '#b80000',
