@@ -11,7 +11,7 @@ const Logo = ({ type } : {type: 'mobile' | 'desktop'}) => {
         height={type === 'mobile' ? 50 : 60}
         className='h-auto'
       />
-      <h1 className='text-4xl font-semibold text-brown lg:text-5xl '>
+      <h1 className='text-3xl font-semibold text-brand lg:text-4xl lg:text-brown'>
         DriveSpace
       </h1>
     </div>
