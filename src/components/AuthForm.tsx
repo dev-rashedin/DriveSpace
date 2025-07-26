@@ -37,7 +37,7 @@ const authFormSchema = (formType: FormType) => {
 const AuthForm = ({ type }: { type: FormType }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const [accountId, setAccountId] = useState('');
+  const [accountId, setAccountId] = useState(null);
 
   const formSchema = authFormSchema(type);
 
@@ -50,26 +50,24 @@ const AuthForm = ({ type }: { type: FormType }) => {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
+    setErrorMessage('');
     
-    const user = createAccount({
+    try {
+      const user = await createAccount({
       fullName: values.fullName  || '',
       email: values.email,
     })
-      .then((res) => {
-        console.log(res);
-        return res;
-      })
-      .catch((err) => {
-        console.log(err);
-        setErrorMessage(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+      
+    setAccountId(user.accountId)
+    } catch (error) {
+      setErrorMessage('Failed to create account. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
     };
-  }
+
   return (
     <>
       <Form {...form}>
@@ -169,5 +167,5 @@ const AuthForm = ({ type }: { type: FormType }) => {
       {/* otp verification */}
     </>
   );
-};
+}
 export default AuthForm;

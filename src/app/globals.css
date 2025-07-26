@@ -151,6 +151,16 @@
     @apply border-none shadow-none p-0 shad-no-focus placeholder:text-gray-500 body-2 !important;
   }
 
+  .form-input:active{
+    @apply bg-transparent !important;
+  }
+
+  .form-input:-webkit-autofill {
+    @apply bg-white shadow-none;
+    -webkit-box-shadow: 0 0 0 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
   .form-item {
     @apply flex h-[78px] flex-col justify-center rounded-xl border border-gray-700 px-4 shadow-drop-1;
   }
