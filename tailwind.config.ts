@@ -18,7 +18,8 @@ const config: Config = {
   				'200': '#0c8d62',
   				DEFAULT: '#064E3B'
   			},
-  			brown: '#DEDCA4',
+        brown: '#DEDCA4',
+        lime: '#CBE3BA',
   			coral: '#F87171',
   			red: '#FF7474',
   			error: '#b80000',
@@ -102,6 +103,6 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [tailwindcssAnimate, require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 };
 export default config;
