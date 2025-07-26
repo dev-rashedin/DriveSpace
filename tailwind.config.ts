@@ -3,16 +3,14 @@ import tailwindcssAnimate from 'tailwindcss-animate';
 
 const config: Config = {
   darkMode: ['class'],
-  content: [
-    './src/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         brand: {
-          '100': '#0c8d62',
-          '200': '#064E3B',
-          DEFAULT: '#10B981',
+          '100': '#10B981',
+          '200': '#0c8d62',
+          DEFAULT: '#064E3B',
         },
         coral: '#F87171',
         red: '#FF7474',
