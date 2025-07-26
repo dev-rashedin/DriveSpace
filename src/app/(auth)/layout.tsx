@@ -26,7 +26,7 @@ const layout = ({ children }: { children: React.ReactNode }) => {
       </section>
 
       {/* right section */}
-      <section className='flex flex-1 flex-col items-center justify-center  bg-gray-100 p-4  py-10 lg:bg-lime lg:p-10 lg:py-0'>
+      <section className='flex flex-1 flex-col items-center justify-center  bg-lime p-4  py-10 lg:p-10 lg:py-0'>
         <div className='lg:hidden'>
           <Logo type='mobile' />
         </div>

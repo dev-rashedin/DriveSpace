@@ -17,12 +17,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-
 type FormType = 'sign-in' | 'sign-up';
+
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 const authFormSchema = (formType: FormType) => {
   return z.object({
-    email: z.string().email(),
+    email: z
+      .string()
+      .refine((val) => emailRegex.test(val), { message: 'Invalid email' }),
     fullName:
       formType === 'sign-up'
         ? z.string().min(2).max(50)
@@ -30,34 +33,32 @@ const authFormSchema = (formType: FormType) => {
   });
 };
 
-
-
 const AuthForm = ({ type }: { type: FormType }) => {
-
-   const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  
-    const formSchema = authFormSchema(type);
+
+  const formSchema = authFormSchema(type);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: '',
+      fullName: '',
+      email: '',
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  const onSubmit = (values: z.infer<typeof formSchema>) => {
     console.log(values);
   }
   return (
     <>
       <Form {...form}>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className='auth-form'>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className='auth-form mt-16 lg:mt-0'
+          >
             <h1 className='form-title'>
               {type === 'sign-in' ? 'Sign In' : 'Sign Up'}
             </h1>
@@ -67,21 +68,19 @@ const AuthForm = ({ type }: { type: FormType }) => {
                 name='fullName'
                 render={({ field }) => (
                   <FormItem>
-                    <div className='shad-form-item'>
-                      <FormLabel className='shad-form-label'>
-                        Full Name
-                      </FormLabel>
+                    <div className='form-item'>
+                      <FormLabel className='form-label'>Full Name</FormLabel>
 
                       <FormControl>
                         <Input
                           placeholder='Enter your full name'
-                          className='shad-input'
+                          className='form-input'
                           {...field}
                         />
                       </FormControl>
                     </div>
 
-                    <FormMessage className='shad-form-message' />
+                    <FormMessage className='form-message' />
                   </FormItem>
                 )}
               />
@@ -92,19 +91,19 @@ const AuthForm = ({ type }: { type: FormType }) => {
               name='email'
               render={({ field }) => (
                 <FormItem>
-                  <div className='shad-form-item'>
-                    <FormLabel className='shad-form-label'>Email</FormLabel>
+                  <div className='form-item'>
+                    <FormLabel className='form-label'>Email</FormLabel>
 
                     <FormControl>
                       <Input
                         placeholder='Enter your email'
-                        className='shad-input'
+                        className='form-input'
                         {...field}
                       />
                     </FormControl>
                   </div>
 
-                  <FormMessage className='shad-form-message' />
+                  <FormMessage className='form-message' />
                 </FormItem>
               )}
             />
@@ -114,9 +113,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
               className='form-submit-button'
               disabled={isLoading}
             >
-              {type === 'sign-in' ? 'Sign In' : 'Sign Up'}
-
-              {isLoading && (
+              {isLoading ? (
                 <Image
                   src='/assets/icons/loader.svg'
                   alt='loader'
@@ -124,20 +121,24 @@ const AuthForm = ({ type }: { type: FormType }) => {
                   height={24}
                   className='ml-2 animate-spin'
                 />
+              ) : type === 'sign-in' ? (
+                'Sign In'
+              ) : (
+                'Sign Up'
               )}
             </Button>
 
             {errorMessage && <p className='error-message'>*{errorMessage}</p>}
 
-            <div className='body-2 flex justify-center'>
-              <p className='text-light-100'>
+            <div className='body-1 flex items-center justify-center '>
+              <p className=' text-light-100 '>
                 {type === 'sign-in'
                   ? "Don't have an account?"
                   : 'Already have an account?'}
               </p>
               <Link
                 href={type === 'sign-in' ? '/sign-up' : '/sign-in'}
-                className='ml-1 font-medium text-brand'
+                className='ml-2 text-base  font-semibold text-brand-200 hover:text-brand-100'
               >
                 {' '}
                 {type === 'sign-in' ? 'Sign Up' : 'Sign In'}

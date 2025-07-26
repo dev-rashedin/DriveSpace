@@ -16,7 +16,7 @@ const config: Config = {
           DEFAULT: '#064E3B',
         },
         brown: '#DEDCA4',
-        lime: '#d6e9c9',
+        lime: '#e3f0db',
         coral: '#F87171',
         red: '#FF7474',
         error: '#b80000',

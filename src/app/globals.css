@@ -134,7 +134,10 @@
     @apply mx-auto max-w-7xl px-5;
   }
   .primary-btn {
-    @apply bg-brand hover:bg-brand-100 transition-all rounded-full button !important;
+    @apply bg-brand hover:bg-brand-200 transition-all rounded-2xl button !important;
+  }
+  .primary-btn:disabled {
+    @apply bg-gray-900 cursor-not-allowed  !important;
   }
   .flex-center {
     @apply flex items-center justify-center;
@@ -144,17 +147,17 @@
   .shad-no-focus {
     @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
-  .shad-input {
-    @apply border-none shadow-none p-0 shad-no-focus placeholder:text-light-200 body-2 !important;
+  .form-input {
+    @apply border-none shadow-none p-0 shad-no-focus placeholder:text-gray-500 body-2 !important;
   }
 
-  .shad-form-item {
-    @apply flex h-[78px] flex-col justify-center rounded-xl border border-light-300 px-4 shadow-drop-1;
+  .form-item {
+    @apply flex h-[78px] flex-col justify-center rounded-xl border border-gray-700 px-4 shadow-drop-1;
   }
-  .shad-form-label {
+  .form-label {
     @apply text-light-100 pt-2 body-2 w-full !important;
   }
-  .shad-form-message {
+  .form-message {
     @apply text-red body-2 ml-4 !important;
   }
   .shad-alert-dialog {
@@ -303,7 +306,7 @@
     @apply h1 text-center text-light-100 md:text-left !important;
   }
   .form-submit-button {
-    @apply primary-btn h-[66px] !important;
+    @apply primary-btn h-[60px] !important;
   }
   .error-message {
     @apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
@@ -405,7 +408,7 @@
     @apply flex h-[52px] flex-1 items-center gap-3 rounded-full px-4 shadow-drop-3 !important;
   }
   .search-input {
-    @apply body-2 shad-no-focus  placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-light-200 !important;
+    @apply body-2 shad-no-focus  placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-gray-500 !important;
   }
   .search-result {
     @apply absolute left-0 top-16 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white p-4 !important;
