@@ -6,11 +6,18 @@ import { cookies } from "next/headers";
 
 // node-appwrite
 export const createSessionClient = async () => {
-  const client = new Client()
-    .setEndpoint(appwriteConfig.endpointUrl)
-    .setProject(appwriteConfig.projectId);
+   const client = new Client()
+     .setEndpoint(appwriteConfig.endpointUrl)
+     .setProject(appwriteConfig.projectId);
+  
+  console.log('client',client)
+  
+  
   
   const session = (await cookies()).get('appwrite-session');
+
+  console.log('session', session)
+  
 
   if (!session || !session.value) throw new Error('No session');
 
