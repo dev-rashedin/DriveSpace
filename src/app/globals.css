@@ -444,7 +444,7 @@
     @apply aspect-square w-10 rounded-full object-cover !important;
   }
 
-  .shad-active {
+  .nav-active {
     @apply bg-brand text-white shadow-drop-2 !important;
   }
 

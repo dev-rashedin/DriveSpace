@@ -1,21 +1,21 @@
-"use client"
+'use client';
 
-import Image from "next/image";
-import Link from "next/link"
-import Logo from "./ui/logo";
-import { navItems } from "@/app/constants";
-import { usePathname } from "next/navigation";
+import Image from 'next/image';
+import Link from 'next/link';
+import Logo from './ui/logo';
+import { navItems } from '@/app/constants';
+import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-
-
 const Sidebar = () => {
-    const pathname = usePathname();
+  const pathname = usePathname();
 
   return (
-    <aside className='sidebar bg-lime'>
+    <aside className='sidebar'>
       {/* logo for sidebar */}
-      <Logo type='sidebar' />
+      <div className='flex h-[50px] items-center rounded-full'>
+        <Logo type='sidebar' />
+      </div>
 
       <nav className='sidebar-nav'>
         <ul className='flex flex-1 flex-col gap-6'>
@@ -24,7 +24,7 @@ const Sidebar = () => {
               <li
                 className={cn(
                   'sidebar-nav-item',
-                  pathname === url && 'shad-active'
+                  pathname === url && 'nav-active'
                 )}
               >
                 <Image
@@ -45,5 +45,5 @@ const Sidebar = () => {
       </nav>
     </aside>
   );
-}
-export default Sidebar
+};
+export default Sidebar;
