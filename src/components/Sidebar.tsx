@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from './ui/logo';
-import { navItems } from '@/app/constants';
+import { avatarPlaceholderUrl, navItems } from '@/app/constants';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -43,6 +43,28 @@ const Sidebar = () => {
           ))}
         </ul>
       </nav>
+
+      <Image
+        src='/assets/images/files-2.png'
+        alt='user'
+        width={506}
+        height={418}
+        className='w-full'
+      />
+
+      <div className='sidebar-user-info'>
+        <Image
+          src={avatarPlaceholderUrl}
+          alt='Avatar'
+          width={44}
+          height={44}
+          className='sidebar-user-avatar'
+        />
+        <div className='hidden lg:block'>
+          <p className='subtitle-2'>{fullName}</p>
+          <p className='caption'>{email}</p>
+        </div>
+      </div>
     </aside>
   );
 };
