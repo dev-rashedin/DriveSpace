@@ -1,26 +1,27 @@
+"use client"
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
 
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { set } from 'zod';
+import { Button } from './ui/button';
+import { sendEmailOTP, verifySecret } from '@/lib/actions/user.actions';
+import { useRouter } from 'next/navigation';
 
-const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
+const OTPModal = ({ accountId, email }: { accountId: string; email: string }) => {
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(true);
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -30,15 +31,12 @@ const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
     setLoading(true);
     try {
       // call api to verify otp
-      const response = await fetch('/api/auth/verify', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ password }),
-      });
-      const data = await response.json();
-      console.log(data);
+      const sessionId = await verifySecret({ accountId, password })
+      
+      if (sessionId) {
+        router.push('/')
+      }
+
     } catch (error) {
       console.error('Failed to verify OTP', error);
     } finally {
@@ -48,6 +46,7 @@ const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
 
   const handleResendOtp = async () => {
     // call api to resend otp
+    await sendEmailOTP({ email });
   };
 
   return (
@@ -62,8 +61,8 @@ const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
           </AlertDialogTitle>
           <AlertDialogDescription className='subtitle-1 text-center text-light-100'>
             We&apos;ve sent a code to{' '}
-            <span className='pl-1 text-brand'>
-              {'rashedinislam.06@gmail.com'}
+            <span className='pl-1 font-semibold text-brand '>
+              {email}
             </span>
           </AlertDialogDescription>
         </AlertDialogHeader>
@@ -84,8 +83,7 @@ const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
               className='otp-submit-btn h-10'
               type='button'
             >
-              Submit
-              {loading && (
+              {loading ? (
                 <Image
                   src='/assets/icons/loader.svg'
                   alt='loader'
@@ -93,8 +91,21 @@ const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
                   height={24}
                   className='ml-2 animate-spin'
                 />
+              ) : (
+                ' Submit'
               )}
             </AlertDialogAction>
+            <div className='subtitle-2 mt-2 text-center text-light-100'>
+              Didn&apos;t get a code?
+              <Button
+                type='button'
+                variant='link'
+                className='pl-1.5 font-semibold text-brand '
+                onClick={handleResendOtp}
+              >
+                Click to resend
+              </Button>
+            </div>
           </div>
         </AlertDialogFooter>
       </AlertDialogContent>

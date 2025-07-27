@@ -407,7 +407,7 @@
 
   /* OTP Modal */
   .otp-close-button {
-    @apply absolute -right-4 -top-10 md:-right-8 size-8 flex-center cursor-pointer border-2  border-coral text-coral text-lg rounded-full  !important;
+    @apply absolute -right-4 -top-10 size-8 md:-right-8 flex-center cursor-pointer border-2  border-coral text-coral text-lg rounded-full  !important;
   }
 
   /* Search */
