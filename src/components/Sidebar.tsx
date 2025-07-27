@@ -7,7 +7,7 @@ import { avatarPlaceholderUrl, navItems } from '@/app/constants';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-const Sidebar = () => {
+const Sidebar = ({currentUser}: unknown) => {
   const pathname = usePathname();
 
   return (
@@ -61,8 +61,8 @@ const Sidebar = () => {
           className='sidebar-user-avatar'
         />
         <div className='hidden lg:block'>
-          <p className='subtitle-2'>{fullName}</p>
-          <p className='caption'>{email}</p>
+          <p className='subtitle-2'>{currentUser.fullName}</p>
+          <p className='caption'>{currentUser.email}</p>
         </div>
       </div>
     </aside>
