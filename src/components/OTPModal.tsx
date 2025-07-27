@@ -20,7 +20,7 @@ import Image from 'next/image';
 import React, { useState } from 'react';
 import { set } from 'zod';
 
-const OTPModal = () => {
+const OTPModal = ({accountId, email} : {scountId: string; email: string}) => {
   const [isOpen, setIsOpen] = useState(true);
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,31 +54,48 @@ const OTPModal = () => {
     <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
       <AlertDialogContent className='alert-dialog'>
         <AlertDialogHeader className='relative flex justify-center'>
-          <AlertDialogTitle className='h2 text-center relative'>
+          <AlertDialogTitle className='h2 relative text-center '>
             Enter your OTP
-            <span className='otp-close-button' onClick={() => setIsOpen(false)}>X</span>
+            <span className='otp-close-button' onClick={() => setIsOpen(false)}>
+              X
+            </span>
           </AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+          <AlertDialogDescription className='subtitle-1 text-center text-light-100'>
+            We&apos;ve sent a code to{' '}
+            <span className='pl-1 text-brand'>
+              {'rashedinislam.06@gmail.com'}
+            </span>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <InputOTP maxLength={6}>
-          <InputOTPGroup>
-            <InputOTPSlot index={0} />
-            <InputOTPSlot index={1} />
-            <InputOTPSlot index={2} />
-          </InputOTPGroup>
-          <InputOTPSeparator />
-          <InputOTPGroup>
-            <InputOTPSlot index={3} />
-            <InputOTPSlot index={4} />
-            <InputOTPSlot index={5} />
+        <InputOTP maxLength={6} value={password} onChange={setPassword}>
+          <InputOTPGroup className='shad-otp'>
+            <InputOTPSlot index={0} className='shad-otp-slot' />
+            <InputOTPSlot index={1} className='shad-otp-slot' />
+            <InputOTPSlot index={2} className='shad-otp-slot' />
+            <InputOTPSlot index={3} className='shad-otp-slot' />
+            <InputOTPSlot index={4} className='shad-otp-slot' />
+            <InputOTPSlot index={5} className='shad-otp-slot' />
           </InputOTPGroup>
         </InputOTP>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction>Continue</AlertDialogAction>
+          <div className='flex w-full flex-col gap-4'>
+            <AlertDialogAction
+              onClick={handleSubmit}
+              className='otp-submit-btn h-10'
+              type='button'
+            >
+              Submit
+              {loading && (
+                <Image
+                  src='/assets/icons/loader.svg'
+                  alt='loader'
+                  width={24}
+                  height={24}
+                  className='ml-2 animate-spin'
+                />
+              )}
+            </AlertDialogAction>
+          </div>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>

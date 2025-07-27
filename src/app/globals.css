@@ -171,16 +171,16 @@
     @apply text-red body-2 ml-4 !important;
   }
   .alert-dialog {
-    @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl lg:rounded-2xl  px-4 md:px-8 py-10 bg-white outline-none !important;
+    @apply space-y-4 max-w-[95%]  sm:w-fit rounded-xl lg:rounded-2xl  px-4 md:px-8 py-10 bg-white outline-none !important;
   }
-  .shad-submit-btn {
-    @apply bg-brand button hover:bg-brand-100 transition-all rounded-full !important;
+  .otp-submit-btn {
+    @apply bg-brand button hover:bg-brand-100 transition-all rounded-lg !important;
   }
   .shad-otp {
     @apply w-full flex gap-1 sm:gap-2 justify-between !important;
   }
   .shad-otp-slot {
-    @apply text-[40px] font-medium rounded-xl ring-brand shadow-drop-1 text-brand-100 justify-center flex border-2 border-light-300 size-12 md:size-16 gap-5 !important;
+    @apply text-[40px] font-medium rounded-xl ring-brand shadow text-brand-100 justify-center flex border-2 border-gray-200 size-12 md:size-16 gap-5 !important;
   }
 
   .shad-sheet {
@@ -407,7 +407,7 @@
 
   /* OTP Modal */
   .otp-close-button {
-    @apply absolute -right-3 -top-9 md:-right-5 md:-top-9 size-9 flex-center cursor-pointer border-2  border-coral text-coral text-xl  p-1 rounded-full  !important; 
+    @apply absolute -right-4 -top-10 md:-right-8 size-8 flex-center cursor-pointer border-2  border-coral text-coral text-lg rounded-full  !important;
   }
 
   /* Search */
