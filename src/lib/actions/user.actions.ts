@@ -1,7 +1,7 @@
 'use server';
 
 import { ID, Query } from 'node-appwrite';
-import { createAdminClient, createSessionClient } from '../appwrite';
+import { createAdminClient } from '../appwrite';
 import { appwriteConfig } from '../appwrite/config';
 import { avatarPlaceholderUrl } from '@/app/constants';
 import { parseStringify } from '../utils';
@@ -26,6 +26,7 @@ const getUserByEmail = async (email: string) => {
     appwriteConfig.usersCollectionId,
     [Query.equal("email", [email])],
   );
+  
 
   return result.total > 0 ? result.documents[0] : null;
 }
@@ -37,7 +38,7 @@ const handleError = (error: unknown, message: string) => {
 
 // sent email OTP
 const sendEmailOTP = async ({ email }: { email: string }) => {
-  const { account } = await createSessionClient();
+  const { account } = await createAdminClient(); 
   
   try {
     const session = await account.createEmailToken(ID.unique(), email);
@@ -54,7 +55,8 @@ export const createAccount = async ({
 }: {
   fullName: string;
   email: string;
-}) => {
+  }) => {
+  
   const existingUser = await getUserByEmail(email);
 
   const accountId = await sendEmailOTP({ email })
@@ -76,6 +78,5 @@ export const createAccount = async ({
       }
     )
   }
-
    return parseStringify({ accountId });
 };

@@ -6,17 +6,13 @@ import { cookies } from "next/headers";
 
 // node-appwrite
 export const createSessionClient = async () => {
-   const client = new Client()
-     .setEndpoint(appwriteConfig.endpointUrl)
-     .setProject(appwriteConfig.projectId);
-  
-  console.log('client',client)
-  
-  
-  
-  const session = (await cookies()).get('appwrite-session');
+  const client = new Client()
+    .setEndpoint(appwriteConfig.endpointUrl)
+    .setProject(appwriteConfig.projectId);
 
-  console.log('session', session)
+  const cookieStore = await cookies();
+  
+  const session = cookieStore.get('appwrite-session');
   
 
   if (!session || !session.value) throw new Error('No session');
@@ -25,21 +21,19 @@ export const createSessionClient = async () => {
 
   return {
     get account() {
-      return new Account(client)
+      return new Account(client);
     },
     get databases() {
-      return new Databases(client)
-    }
-  }
-   
-}
+      return new Databases(client);
+    },
+  };
+};
 
 export const createAdminClient = async () => {
      const client = new Client()
        .setEndpoint(appwriteConfig.endpointUrl)
        .setProject(appwriteConfig.projectId)
        .setKey(appwriteConfig.secretKey)
-
    
 
      return {
