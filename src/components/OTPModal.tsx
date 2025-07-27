@@ -16,14 +16,48 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from '@/components/ui/input-otp';
+import Image from 'next/image';
+import React, { useState } from 'react';
+import { set } from 'zod';
 
 const OTPModal = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      // call api to verify otp
+      const response = await fetch('/api/auth/verify', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Failed to verify OTP', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleResendOtp = async () => {
+    // call api to resend otp
+  };
+
   return (
-    <AlertDialog>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
-      <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+    <AlertDialog open={isOpen} onOpenChange={setIsOpen}>
+      <AlertDialogContent className='alert-dialog'>
+        <AlertDialogHeader className='relative flex justify-center'>
+          <AlertDialogTitle className='h2 text-center relative'>
+            Enter your OTP
+            <span className='otp-close-button' onClick={() => setIsOpen(false)}>X</span>
+          </AlertDialogTitle>
           <AlertDialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.

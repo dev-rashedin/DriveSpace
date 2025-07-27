@@ -151,7 +151,7 @@
     @apply border-none shadow-none p-0 shad-no-focus placeholder:text-gray-500 body-2 !important;
   }
 
-  .form-input:active{
+  .form-input:active {
     @apply bg-transparent !important;
   }
 
@@ -170,8 +170,8 @@
   .form-message {
     @apply text-red body-2 ml-4 !important;
   }
-  .shad-alert-dialog {
-    @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl md:rounded-[30px] px-4 md:px-8 py-10 bg-white outline-none !important;
+  .alert-dialog {
+    @apply space-y-4 max-w-[95%] sm:w-fit rounded-xl lg:rounded-2xl  px-4 md:px-8 py-10 bg-white outline-none !important;
   }
   .shad-submit-btn {
     @apply bg-brand button hover:bg-brand-100 transition-all rounded-full !important;
@@ -407,7 +407,7 @@
 
   /* OTP Modal */
   .otp-close-button {
-    @apply absolute -right-1 -top-7 cursor-pointer sm:-right-2 sm:-top-4  !important;
+    @apply absolute -right-3 -top-9 md:-right-5 md:-top-9 size-9 flex-center cursor-pointer border-2  border-coral text-coral text-xl  p-1 rounded-full  !important; 
   }
 
   /* Search */
