@@ -15,6 +15,7 @@ import Link from 'next/link';
 import { navItems } from '@/app/constants';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
+import { signOutUser } from '@/lib/actions/user.actions';
 
 interface Props {
   $id: string;
@@ -103,7 +104,7 @@ const MobileNavigation = ({
               <Button
                 type='submit'
                 className='mobile-sign-out-button'
-                // onClick={async () => await signOutUser()}
+                onClick={async () => await signOutUser()}
               >
                 <Image
                   src='/assets/icons/logout.svg'
