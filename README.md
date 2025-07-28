@@ -4,6 +4,7 @@
 
 
 ### color schema
+
  - Primary: Emerald Green (#10B981)
 
  - Accent: Coral (#F87171) or Gold (#FBBF24)
@@ -14,6 +15,7 @@
 
 
  ### Technology
+ 
   - Next.js 15
   - Tailwind CSS
   - Appwrite
