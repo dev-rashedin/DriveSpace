@@ -28,22 +28,20 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
           {navItems.map(({ url, name, icon }) => (
             <Link key={name} href={url} className='lg:w-full'>
               <li
-                // className={cn(
-                //   'sidebar-nav-item',
-                //   pathname === url && 'nav-active'
-                // )}
-                className={cn('sidebar-nav-item', pathname === url && 'nav-active')}
+                className={cn(
+                  'sidebar-nav-item',
+                  pathname === url && 'nav-active'
+                )}
               >
                 <Image
                   src={icon}
                   alt={name}
                   width={24}
                   height={24}
-                  // className={cn(
-                  //   'nav-icon',
-                  //   pathname === url && 'nav-icon-active'
-                  // )}
-                  className={cn('nav-icon', pathname === url && 'nav-icon-active')}
+                  className={cn(
+                    'nav-icon',
+                    pathname === url && 'nav-icon-active'
+                  )}
                 />
                 <p className='hidden lg:block'>{name}</p>
               </li>
