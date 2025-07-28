@@ -1,18 +1,20 @@
-"use client"
+'use client';
 import {
- Sheet,
+  Sheet,
   SheetContent,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { Separator } from "@radix-ui/react-separator";
+import { Separator } from '@radix-ui/react-separator';
 import Logo from './ui/logo';
 import { useState } from 'react';
-import { useParams } from 'next/navigation';
 import Image from 'next/image';
 import FileUploader from './FileUploader';
 import { Button } from './ui/button';
-
+import Link from 'next/link';
+import { navItems } from '@/app/constants';
+import { cn } from '@/lib/utils';
+import { usePathname } from 'next/navigation';
 
 interface Props {
   $id: string;
@@ -31,10 +33,9 @@ const MobileNavigation = ({
 }: Props) => {
 
   const [open, setOpen] = useState(false);
-  const pathname = useParams();
+  const pathname = usePathname()
 
   console.log('pathname', pathname);
-  
 
   return (
     <>
@@ -65,25 +66,54 @@ const MobileNavigation = ({
                   <p className='caption'>{email}</p>
                 </div>
               </div>
-              <Separator className="mb-4 h-px bg-light-200/50" />
-
-              <div className='flex flex-col justify-between gap-5 pb-5'>
-                <FileUploader ownerId={ownerId} accountId={accountId} />
-                <Button
-                  type='submit'
-                  className='mobile-sign-out-button'
-                  // onClick={async () => await signOutUser()}
-                >
-                  <Image
-                    src='/assets/icons/logout.svg'
-                    alt='logo'
-                    width={24}
-                    height={24}
-                  />
-                  <p>Logout</p>
-                </Button>
-              </div>
             </SheetTitle>
+
+            <Separator className='mb-4 h-px bg-light-200/50' />
+
+            {/* navigation */}
+            <nav className='mobile-nav'>
+              <ul className='mobile-nav-list'>
+                {navItems.map(({ url, name, icon }) => (
+                  <Link key={name} href={url} className='lg:w-full'>
+                    <li
+                      className={cn(
+                        'mobile-nav-item',
+                        pathname === url && 'shad-active'
+                      )}
+                    >
+                      <Image
+                        src={icon}
+                        alt={name}
+                        width={24}
+                        height={24}
+                        className='nav-icon'
+                      />
+                      <p className='body-1'>{name}</p>
+                    </li>
+                  </Link>
+                ))}
+              </ul>
+            </nav>
+
+            <Separator className='mb-4 h-px bg-light-200/50' />
+
+            {/* file uploader & logout button */}
+            <div className='flex flex-col justify-between gap-5 pb-5'>
+              <FileUploader ownerId={ownerId} accountId={accountId} />
+              <Button
+                type='submit'
+                className='mobile-sign-out-button'
+                // onClick={async () => await signOutUser()}
+              >
+                <Image
+                  src='/assets/icons/logout.svg'
+                  alt='logo'
+                  width={24}
+                  height={24}
+                />
+                <p>Logout</p>
+              </Button>
+            </div>
           </SheetContent>
         </Sheet>
       </header>
