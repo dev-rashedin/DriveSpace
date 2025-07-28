@@ -46,7 +46,7 @@ export const sendEmailOTP = async ({ email }: { email: string }) => {
     return session.userId;
   } catch (error) {
     handleError(error, 'Failed to send email OTP');
-  }
+  } 
 };
 
 export const createAccount = async ({
