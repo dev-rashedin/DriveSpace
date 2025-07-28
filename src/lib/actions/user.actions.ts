@@ -64,7 +64,8 @@ export const createAccount = async ({
   if (!accountId) throw new Error('Failed to send OTP');
 
   if (!existingUser) {
-    const { databases } = await createAdminClient();
+    const { databases} = await createAdminClient();
+    
 
     await databases.createDocument(
       appwriteConfig.databaseId,

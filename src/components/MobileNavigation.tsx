@@ -9,7 +9,7 @@ import { Separator } from '@radix-ui/react-separator';
 import Logo from './ui/logo';
 import { useState } from 'react';
 import Image from 'next/image';
-import FileUploader from './FileUploader';
+// import FileUploader from './FileUploader';
 import { Button } from './ui/button';
 import Link from 'next/link';
 import { navItems } from '@/app/constants';
@@ -35,8 +35,6 @@ const MobileNavigation = ({
 
   const [open, setOpen] = useState(false);
   const pathname = usePathname()
-
-  console.log('pathname', pathname);
 
   return (
     <>
@@ -100,7 +98,7 @@ const MobileNavigation = ({
 
             {/* file uploader & logout button */}
             <div className='flex flex-col justify-between gap-5 pb-5'>
-              <FileUploader ownerId={ownerId} accountId={accountId} />
+              {/* <FileUploader ownerId={ownerId} accountId={accountId} /> */}
               <Button
                 type='submit'
                 className='mobile-sign-out-button'
