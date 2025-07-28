@@ -2,7 +2,20 @@ import Image from "next/image"
 import Link from "next/link";
 
 
-const Logo = ({ type } : {type: 'sidebar' | 'mobile' | 'desktop'}) => {
+const Logo = ({ type }: { type: 'sidebar' | 'mobile' | 'desktop' | 'navigation' }) => {
+  
+  const sizeMap: Record<string, number> = {
+    navigation: 40,
+    sidebar: 50,
+    mobile: 50,
+  };
+
+  const size = sizeMap[type] ?? 60;
+
+  console.log('the size is', { size});
+  
+
+
   return (
     <Link
       href='/'
@@ -11,12 +24,12 @@ const Logo = ({ type } : {type: 'sidebar' | 'mobile' | 'desktop'}) => {
       <Image
         src='/logo.png'
         alt='logo'
-        width={type === 'sidebar' ? 50 : type === 'mobile' ? 50 : 60}
-        height={type === 'sidebar' ? 40 : type === 'mobile' ? 50 : 60}
+        width={size}
+        height={size}
         className='h-auto'
       />
       <h1
-        className={`${type === 'sidebar' ? 'hidden text-3xl text-brand lg:block' : 'text-3xl text-brand lg:text-4xl  lg:text-brown'} font-bold `}
+        className={`${type === 'navigation' ? 'text-xl' : type === 'sidebar' ? 'hidden text-3xl text-brand lg:block' : 'text-3xl text-brand lg:text-4xl  lg:text-brown'} font-bold `}
       >
         DriveSpace
       </h1>
