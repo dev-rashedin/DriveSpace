@@ -11,8 +11,6 @@ const Logo = ({ type }: { type: 'sidebar' | 'mobile' | 'desktop' | 'navigation' 
   };
 
   const size = sizeMap[type] ?? 60;
-
-  console.log('the size is', { size});
   
 
 
