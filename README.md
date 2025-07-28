@@ -11,3 +11,11 @@
  - Background: Soft off-white (#ECFDF5)
 
  - Text: Dark green-gray (#064E3B)
+
+
+ ### Technology
+  - Next.js 15
+  - Tailwind CSS
+  - Appwrite
+  - Shadcn
+  - React Hook Form
