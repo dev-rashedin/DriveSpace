@@ -37,7 +37,7 @@ const MobileNavigation = ({
   const pathname = usePathname()
 
   return (
-    <>
+
       <header className='mobile-header'>
         <Logo type='navigation' />
 
@@ -116,7 +116,6 @@ const MobileNavigation = ({
           </SheetContent>
         </Sheet>
       </header>
-    </>
   );
 };
 export default MobileNavigation;
