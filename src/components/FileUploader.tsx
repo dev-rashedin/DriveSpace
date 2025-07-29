@@ -5,6 +5,7 @@ import { Button } from './ui/button';
 import { cn, convertFileToUrl, getFileType } from '@/lib/utils';
 import Image from 'next/image';
 import Thumbnail from './Thumbnail';
+import { MAX_FILE_SIZE } from '@/app/constants';
 
 interface Props {
   ownerId: string;
@@ -14,11 +15,18 @@ interface Props {
 
 const FileUploader = ({ ownerId, accountId, className }: Props) => {
    const [files, setFiles] = useState<File[]>([]);
-  
+   const {toast} = useToast()
 
   const onDrop = useCallback( async (acceptedFiles : File[]) => {
    
     setFiles(acceptedFiles)
+
+    const uploadPromises = acceptedFiles.map(async (file) => {
+      if (file.size > MAX_FILE_SIZE) {
+        setFiles((prevFiles) => prevFiles.filter((f) => f.name !== file.name));
+
+      }
+    });
 
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

@@ -9,6 +9,12 @@ import { constructFileUrl, getFileType, parseStringify } from "../utils";
 import { revalidatePath } from "next/cache";
 
 
+// handle error
+ const handleError = (error: unknown, message: string) => {
+  console.error(error, message);
+  throw error;
+};
+
 export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileProps) => {
   const { storage, databases } = await createAdminClient();
 
