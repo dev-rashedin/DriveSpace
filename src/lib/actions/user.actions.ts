@@ -32,7 +32,8 @@ const getUserByEmail = async (email: string) => {
   return result.total > 0 ? result.documents[0] : null;
 };
 
-const handleError = (error: unknown, message: string) => {
+// handle error
+ const handleError = (error: unknown, message: string) => {
   console.error(error, message);
   throw error;
 };
