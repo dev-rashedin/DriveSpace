@@ -1,5 +1,5 @@
 "use client"
-import React, { useCallback, useState } from 'react';
+import React, { MouseEvent, useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from './ui/button';
 import { cn, convertFileToUrl, getFileType } from '@/lib/utils';
@@ -18,10 +18,18 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
 
   const onDrop = useCallback( async (acceptedFiles : File[]) => {
    
-setFiles(acceptedFiles)
+    setFiles(acceptedFiles)
 
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+
+  const handleRemoveFile = (
+    e: React.MouseEvent<HTMLImageElement, MouseEvent>,
+    fileName: string
+  ) => {
+   e.stopPropagation();
+   setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
+  };
 
   return (
     <div {...getRootProps()} className='cursor-pointer'>
@@ -71,19 +79,13 @@ setFiles(acceptedFiles)
                   width={24}
                   height={24}
                   alt='Remove'
-                  // onClick={(e) => handleRemoveFile(e, file.name)}
+                  onClick={(e) => handleRemoveFile(e, file.name)}
                 />
               </li>
             );
           })}
         </ul>
       )}
-
-      {/* {isDragActive ? (
-        <p>Drop the files here ...</p>
-      ) : (
-        <p>Drag 'n' drop some files here, or click to select files</p>
-      )} */}
     </div>
   );
 };
