@@ -50,6 +50,7 @@ export const sendEmailOTP = async ({ email }: { email: string }) => {
   } 
 };
 
+// create a new user if it does not exist
 export const createAccount = async ({
   fullName,
   email,
@@ -64,9 +65,8 @@ export const createAccount = async ({
   if (!accountId) throw new Error('Failed to send OTP');
 
   if (!existingUser) {
-    const { databases} = await createAdminClient();
+    const { databases } = await createAdminClient();  
     
-
     await databases.createDocument(
       appwriteConfig.databaseId,
       appwriteConfig.usersCollectionId,
@@ -82,6 +82,7 @@ export const createAccount = async ({
   return parseStringify({ accountId });
 };
 
+// verify OTP
 export const verifySecret = async ({
   accountId,
   password,
@@ -146,4 +147,18 @@ export const signOutUser = async () => {
  } finally {
    redirect('/sign-in')
  }
+}
+
+
+export const signInUser = async ({ email }: { email: string }) => {
+  try {
+    const existingUser = await getUserByEmail(email);
+
+    if (existingUser) {
+      await sendEmailOTP({ email });
+      return parseStringify({ accountId: existingUser.accountId });
+    }
+  } catch (error) {
+    handleError(error, 'Failed to sign in user');
+  }
 }
