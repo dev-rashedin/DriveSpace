@@ -2,8 +2,9 @@
 import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from './ui/button';
-import { cn, getFileType } from '@/lib/utils';
+import { cn, convertFileToUrl, getFileType } from '@/lib/utils';
 import Image from 'next/image';
+import Thumbnail from './Thumbnail';
 
 interface Props {
   ownerId: string;
@@ -48,11 +49,11 @@ setFiles(acceptedFiles)
                 className='uploader-preview-item'
               >
                 <div className='flex items-center gap-3'>
-                  {/* <Thumbnail
+                  <Thumbnail
                     type={type}
                     extension={extension}
                     url={convertFileToUrl(file)}
-                  /> */}
+                  />
 
                   <div className='preview-item-name'>
                     {file.name}
@@ -78,11 +79,11 @@ setFiles(acceptedFiles)
         </ul>
       )}
 
-      {isDragActive ? (
+      {/* {isDragActive ? (
         <p>Drop the files here ...</p>
       ) : (
         <p>Drag 'n' drop some files here, or click to select files</p>
-      )}
+      )} */}
     </div>
   );
 };
