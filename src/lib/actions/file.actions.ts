@@ -21,7 +21,7 @@ const createQueries = (currentUser: Models.Document) => {
   const queries = [
     Query.or([
       Query.equal('owner', [currentUser.$id]),
-      Query.equal('users', [currentUser.email])
+      Query.contains('users', [currentUser.email])
     ])
   ]
 
@@ -76,9 +76,17 @@ export const getFiles = async (fileId: string) => {
   try {
     const currentUser = await getCurrentUser();
 
+   
+    
+
     if (!currentUser) throw new Error('User not found');
 
     const queries = createQueries(currentUser)
+
+     console.log('current user',currentUser);
+
+     console.log('queries', queries);
+     
 
     const files = await databases.listDocuments(
       appwriteConfig.databaseId,
@@ -86,7 +94,7 @@ export const getFiles = async (fileId: string) => {
       queries
     );
 
-    console.log(files)
+    console.log('files',files)
     
 
     return parseStringify(files)

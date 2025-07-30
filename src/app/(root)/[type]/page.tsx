@@ -1,5 +1,6 @@
 import Sort from "@/components/Sort"
 import { getFiles } from "@/lib/actions/file.actions"
+import { Models } from "node-appwrite";
 
 
 const page = async({ params }: SearchParamProps) => {
@@ -27,16 +28,8 @@ const page = async({ params }: SearchParamProps) => {
 
       {files.total > 0 ? (
         <section className='file-list'>
-          {files.documents.map((file) => (
-            <div className='file-card' key={file.$id}>
-              <div className='file-icon'>
-                <img src={file.fileUrl} alt={file.fileName} />
-              </div>
-              <div className='file-details'>
-                <p className='file-name'>{file.fileName}</p>
-                <p className='file-size'>{file.fileSize}</p>
-              </div>
-            </div>
+          {files.documents.map((file : Modals.Document) => (
+            <h1 key={file.$id} >{file.name}</h1>
           ))}
         </section>
       ) : (
