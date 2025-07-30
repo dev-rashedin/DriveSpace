@@ -1,4 +1,4 @@
-"use client"
+'use client';
 import React, { MouseEvent, useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from './ui/button';
@@ -13,53 +13,58 @@ import { usePathname } from 'next/navigation';
 interface Props {
   ownerId: string;
   accountId: string;
-  className?: string
+  className?: string;
 }
 
 const FileUploader = ({ ownerId, accountId, className }: Props) => {
-  const path = usePathname()
+  const path = usePathname();
   const [files, setFiles] = useState<File[]>([]);
-  
+
   console.log('accountId: ', accountId);
-  
 
+  const onDrop = useCallback(
+    async (acceptedFiles: File[]) => {
+      setFiles(acceptedFiles);
 
-  const onDrop = useCallback( async (acceptedFiles : File[]) => {
-   
-    setFiles(acceptedFiles)
-
-    const uploadPromises = acceptedFiles.map(async (file) => {
-      // display toast message if the file size is larger than 50MB
-      if (file.size > MAX_FILE_SIZE) {
-        setFiles((prevFiles) => prevFiles.filter((f) => f.name !== file.name));
-        return toast.custom((t) => (
-          <div
-            className='error-toast'
-            onClick={() => toast.dismiss(t)}
-          >
-            <p className='body-1 text-white'>
-              <span className='font-semibold'>{file.name}</span> is too large.
-              Max file size is 50MB.
-            </p>
-          </div>
-        ));
-      }
-     
-      return uploadFile({ file, ownerId, accountId, path }).then(
-        (uploadedFile) => {
-          if (uploadedFile) {
-            setFiles((prevFiles) =>
-              prevFiles.filter((f) => f.name !== file.name)
-            );
-          }
+      const uploadPromises = acceptedFiles.map(async (file) => {
+        // display toast message if the file size is larger than 50MB
+        if (file.size > MAX_FILE_SIZE) {
+          setFiles((prevFiles) =>
+            prevFiles.filter((f) => f.name !== file.name)
+          );
+          return toast.custom((t) => (
+            <div className='error-toast' onClick={() => toast.dismiss(t)}>
+              <p className='body-1 text-white'>
+                <span className='font-semibold'>{file.name}</span> is too large.
+                Max file size is 50MB.
+              </p>
+            </div>
+          ));
         }
-      );
-    })
 
-    await Promise.all(uploadPromises);
-    
-  }, [ownerId, accountId, path]);
+        return uploadFile({ file, ownerId, accountId, path }).then(
+          (uploadedFile) => {
+            if (uploadedFile) {
+              setFiles((prevFiles) =>
+                prevFiles.filter((f) => f.name !== file.name)
+              );
+              toast.custom((t) => (
+                <div className='success-toast' onClick={() => toast.dismiss(t)}>
+                  <p className='body-1 text-white'>
+                    <span className='font-semibold'>{file.name}</span> uploaded
+                    successfully.
+                  </p>
+                </div>
+              ));
+            }
+          }
+        );
+      });
 
+      await Promise.all(uploadPromises);
+    },
+    [ownerId, accountId, path]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
@@ -67,8 +72,8 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
     e: React.MouseEvent<HTMLImageElement, MouseEvent>,
     fileName: string
   ) => {
-   e.stopPropagation();
-   setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
+    e.stopPropagation();
+    setFiles((prevFiles) => prevFiles.filter((file) => file.name !== fileName));
   };
 
   return (

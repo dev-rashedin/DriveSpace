@@ -13,7 +13,7 @@ declare interface SearchParamProps {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-export declare interface UploadFileProps {
+declare interface UploadFileProps {
   file: File;
   ownerId: string;
   accountId: string;

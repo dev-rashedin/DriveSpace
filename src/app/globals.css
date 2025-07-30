@@ -370,6 +370,9 @@
   .error-toast {
     @apply bg-red !rounded-[10px] p-4 !important;
   }
+  .success-toast {
+    @apply bg-brand !rounded-[10px] p-4 !important;
+  }
 
   /* Header */
   .header {

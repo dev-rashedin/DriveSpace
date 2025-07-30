@@ -1,6 +1,6 @@
 "use server"
 
-import { UploadFileProps } from "@/types";
+
 import { createAdminClient } from "../appwrite";
 import { InputFile } from 'node-appwrite/file';
 import { appwriteConfig } from "../appwrite/config";
@@ -15,6 +15,7 @@ import { revalidatePath } from "next/cache";
   throw error;
 };
 
+// eslint-disable-next-line no-undef
 export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileProps) => {
   const { storage, databases } = await createAdminClient();
 
