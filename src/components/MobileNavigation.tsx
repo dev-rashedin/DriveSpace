@@ -16,6 +16,7 @@ import { navItems } from '@/app/constants';
 import { cn } from '@/lib/utils';
 import { usePathname } from 'next/navigation';
 import { signOutUser } from '@/lib/actions/user.actions';
+import FileUploader from './FileUploader';
 
 interface Props {
   $id: string;
@@ -98,7 +99,7 @@ const MobileNavigation = ({
 
             {/* file uploader & logout button */}
             <div className='flex flex-col justify-between gap-5 pb-5'>
-              {/* <FileUploader ownerId={ownerId} accountId={accountId} /> */}
+              <FileUploader ownerId={ownerId} accountId={accountId} />
               <Button
                 type='submit'
                 className='mobile-sign-out-button'
