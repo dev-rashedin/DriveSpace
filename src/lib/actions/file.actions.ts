@@ -1,12 +1,12 @@
 "use server"
 
-
 import { createAdminClient } from "../appwrite";
 import { InputFile } from 'node-appwrite/file';
 import { appwriteConfig } from "../appwrite/config";
-import { ID } from "node-appwrite";
+import { ID, Models, Query } from "node-appwrite";
 import { constructFileUrl, getFileType, parseStringify } from "../utils";
 import { revalidatePath } from "next/cache";
+import { getCurrentUser } from "./user.actions";
 
 
 // handle error
@@ -15,7 +15,20 @@ import { revalidatePath } from "next/cache";
   throw error;
 };
 
-// eslint-disable-next-line no-undef
+
+// queries
+const createQueries = (currentUser: Models.Document) => {
+  const queries = [
+    Query.or([
+      Query.equal('owner', [currentUser.$id]),
+      Query.equal('users', [currentUser.email])
+    ])
+  ]
+
+  return queries
+}
+
+// upload new file
 export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileProps) => {
   const { storage, databases } = await createAdminClient();
 
@@ -55,3 +68,30 @@ export const uploadFile = async ({ file, ownerId, accountId, path }: UploadFileP
     handleError(error, 'Failed to upload file');
   }
 };
+
+// get file from appwrite
+export const getFiles = async (fileId: string) => {
+  const { databases } = await createAdminClient()
+
+  try {
+    const currentUser = await getCurrentUser();
+
+    if (!currentUser) throw new Error('User not found');
+
+    const queries = createQueries(currentUser)
+
+    const files = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionId,
+      queries
+    );
+
+    console.log(files)
+    
+
+    return parseStringify(files)
+
+  } catch (error) {
+    handleError(error, 'Failed to get files');
+  }
+}
