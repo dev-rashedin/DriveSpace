@@ -16,11 +16,14 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { Models } from 'node-appwrite';
 import { actionsDropdownItems } from '@/app/constants';
+import Link from 'next/link';
+import { constructDownloadUrl, constructFileUrl } from '@/lib/utils';
 
 const ActionDropdown = ({file} : {file: Models.Document}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const [action, setAction] = useState<ActionType | null>(null);
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -38,14 +41,45 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
             {file.name}
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          {actionsDropdownItems.map((item) => 
-          (
-             <DropdownMenuItem key={item.value}>
-            {item.label}
+          {actionsDropdownItems.map((item) => (
+            <DropdownMenuItem
+              key={item.value}
+              className='shad-dropdown-item'
+              onClick={() => {
+                setAction(item);
+
+                if (['rename', 'share', 'delete'].includes(item.value)) {
+                  setIsModalOpen(true);
+                }
+              }}
+            >
+              {item.value === 'download' ? (
+                <Link
+                  href={constructDownloadUrl(file.bucketFileId)}
+                  download={file.name}
+                  className='flex items-center gap-2'
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={30}
+                    height={30}
+                  />
+                  {item.label}
+                </Link>
+              ) : (
+                <div className='flex items-center gap-2'>
+                  <Image
+                    src={item.icon}
+                    alt={item.label}
+                    width={30}
+                    height={30}
+                  />
+                  {item.label}
+                </div>
+              )}
             </DropdownMenuItem>
-           )
-          )
-          }
+          ))}
         </DropdownMenuContent>
       </DropdownMenu>
     </Dialog>
