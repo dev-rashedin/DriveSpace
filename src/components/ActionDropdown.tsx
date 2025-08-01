@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import {
   Dialog,
@@ -22,20 +22,30 @@ import { Models } from 'node-appwrite';
 import { actionsDropdownItems } from '@/app/constants';
 import Link from 'next/link';
 import { constructDownloadUrl, constructFileUrl } from '@/lib/utils';
+import { Input } from './ui/input';
 
-const ActionDropdown = ({file} : {file: Models.Document}) => {
-
+const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [action, setAction] = useState<ActionType | null>(null);
+  const [name, setName] = useState(file.name);
 
   const renderDialogContent = () => {
-
+    const { value, label } = action;
 
     return (
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogTitle className='text-center text-light-100'>
+            {label}
+          </DialogTitle>
+          {value === 'rename' && (
+            <Input
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          )}
           <DialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
@@ -43,7 +53,7 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
         </DialogHeader>
       </DialogContent>
     );
-  }
+  };
 
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
@@ -88,7 +98,10 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
                   {item.label}
                 </Link>
               ) : (
-                <div className='flex items-center gap-3' onClick={() => setIsModalOpen(true)}>
+                <div
+                  className='flex items-center gap-3'
+                  onClick={() => setIsModalOpen(true)}
+                >
                   <Image
                     src={item.icon}
                     alt={item.label}
