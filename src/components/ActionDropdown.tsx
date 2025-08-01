@@ -2,6 +2,10 @@
 
 import {
   Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
 } from '@/components/ui/dialog';
 
 import {
@@ -25,6 +29,22 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [action, setAction] = useState<ActionType | null>(null);
 
+  const renderDialogContent = () => {
+
+
+    return (
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>Are you absolutely sure?</DialogTitle>
+          <DialogDescription>
+            This action cannot be undone. This will permanently delete your
+            account and remove your data from our servers.
+          </DialogDescription>
+        </DialogHeader>
+      </DialogContent>
+    );
+  }
+
   return (
     <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
       <DropdownMenu open={isDropDownOpen} onOpenChange={setIsDropDownOpen}>
@@ -45,19 +65,19 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
             <DropdownMenuItem
               key={item.value}
               className='shad-dropdown-item'
-              onClick={() => {
-                setAction(item);
+              // onClick={() => {
+              //   setAction(item);
 
-                if (['rename', 'share', 'delete'].includes(item.value)) {
-                  setIsModalOpen(true);
-                }
-              }}
+              //   if (['rename', 'share', 'delete'].includes(item.value)) {
+              //     setIsModalOpen(true);
+              //   }
+              // }}
             >
               {item.value === 'download' ? (
                 <Link
                   href={constructDownloadUrl(file.bucketFileId)}
                   download={file.name}
-                  className='flex items-center gap-2'
+                  className='flex items-center gap-3'
                 >
                   <Image
                     src={item.icon}
@@ -68,7 +88,7 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
                   {item.label}
                 </Link>
               ) : (
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-3' onClick={() => setIsModalOpen(true)}>
                   <Image
                     src={item.icon}
                     alt={item.label}
@@ -82,6 +102,7 @@ const ActionDropdown = ({file} : {file: Models.Document}) => {
           ))}
         </DropdownMenuContent>
       </DropdownMenu>
+      {renderDialogContent()}
     </Dialog>
   );
 };
