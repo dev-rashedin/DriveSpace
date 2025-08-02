@@ -27,6 +27,7 @@ import { Button } from './ui/button';
 import { renameFile } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
 import { FileDetails } from './ActionsModalContent';
+import ShareInput from './ShareInput';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
@@ -37,6 +38,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
   const [isLoading, setIsLoading] = useState(false);
+  const [emails, setEmails] = useState<string[]>([]);
 
   const closeAllModals = () => {
     setIsModalOpen(false);
@@ -65,6 +67,10 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
   };
 
+  const handleRemoveUser = () => {
+
+  }
+
   const renderDialogContent = () => {
     if (!action) return null;
 
@@ -76,7 +82,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
           <DialogTitle className='text-center text-light-100'>
             {label}
           </DialogTitle>
-
+{/* if value is rename then show input */}
           {value === 'rename' && (
             <Input
               type='text'
@@ -85,9 +91,12 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             />
           )}
 
+{/* if value is details then show file details */}
           {value === 'details' && (
             <FileDetails file={file} />
           )}
+{/* if value is share then show share input */}
+          {value === 'share' && (<ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser} />)}
 
         </DialogHeader>
         {['rename', 'share', 'delete'].includes(value) && (
