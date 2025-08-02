@@ -364,7 +364,7 @@
     @apply flex items-center justify-between  gap-3 rounded-xl p-3 shadow-drop-3 !important;
   }
   .preview-item-name {
-    @apply subtitle-2 mb-2 line-clamp-1 max-w-[300px] !important;
+    @apply subtitle-2 flex flex-col gap-1 mb-2 line-clamp-1 max-w-[300px] !important;
   }
 
   .error-toast {
