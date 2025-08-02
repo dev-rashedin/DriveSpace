@@ -3,6 +3,13 @@ import Thumbnail from './Thumbnail';
 import FormattedDateTime from './FormattedDateTime';
 import { convertFileSize, formatDateTime } from '@/lib/utils';
 
+
+interface Props {
+  file: Models.Document;
+  onInputChange: React.Dispatch<React.SetStateAction<string[]>>;
+  onRemove: (email: string) => void;
+}
+
 const ImageThumbnail = ({ file }: { file: Models.Document }) => (
   <div className='file-details-thumbnail'>
     <Thumbnail type={file.type} extension={file.extension} url={file.url} />
@@ -33,3 +40,9 @@ export const FileDetails = ({ file }: { file: Models.Document }) => {
     </>
   );
 };
+
+export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
+  return (
+    <div>ShareInput</div>
+  )
+}
