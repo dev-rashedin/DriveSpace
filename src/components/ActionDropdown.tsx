@@ -3,7 +3,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
@@ -22,12 +21,12 @@ import { useState } from 'react';
 import { Models } from 'node-appwrite';
 import { actionsDropdownItems } from '@/app/constants';
 import Link from 'next/link';
-import { constructDownloadUrl, constructFileUrl } from '@/lib/utils';
+import { constructDownloadUrl } from '@/lib/utils';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { set } from 'zod';
 import { renameFile } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
+import { FileDetails } from './ActionsModalContent';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
@@ -85,6 +84,11 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               onChange={(e) => setName(e.target.value)}
             />
           )}
+
+          {value === 'details' && (
+            <FileDetails file={file} />
+          )}
+
         </DialogHeader>
         {['rename', 'share', 'delete'].includes(value) && (
           <DialogFooter className='flex flex-col gap-3 md:flex-row'>
