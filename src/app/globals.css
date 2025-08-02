@@ -187,7 +187,7 @@
     @apply pt-0 !important;
   }
   .shad-sheet button,
-  .shad-dialog button {
+  .shad-dialog button {-o-animation: ;
     @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-dropdown-item {
@@ -208,14 +208,14 @@
     @apply  w-6 filter !important;
   }
   .nav-icon-active {
-    @apply invert opacity-70 !important;
+    @apply invert opacity-90 !important;
   }
 
   /* =====  STYLE CLASSES */
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-light-400 px-5 py-7 sm:mr-7 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-lime px-5 py-7 sm:mr-7 lg:mx-4 xl:mx-8 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
   }
 
   /* Dashboard */
@@ -448,7 +448,7 @@
   }
 
   .nav-active {
-    @apply bg-white text-brand shadow-drop-2 !important;
+    @apply bg-white text-black shadow-drop-2 !important;
   }
 
   /* Sort */
