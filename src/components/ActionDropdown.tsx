@@ -24,7 +24,7 @@ import Link from 'next/link';
 import { constructDownloadUrl } from '@/lib/utils';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
-import { renameFile } from '@/lib/actions/file.actions';
+import { renameFile, updateFileUsers } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
 import { FileDetails, ShareInput } from './ActionsModalContent';
 
@@ -53,10 +53,11 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     let success = false;
 
     const actions = {
-      rename: () => renameFile({ fileId: file.$id, name, extension: file.extension, path }),
-      share: () => console.log('share'),
+      rename: () =>
+        renameFile({ fileId: file.$id, name, extension: file.extension, path }),
+      share: () => updateFileUsers({ fileId: file.$id, path}),
       delete: () => console.log('delete'),
-    }
+    };
   
   success = await actions[action.value as keyof typeof actions]();
 
