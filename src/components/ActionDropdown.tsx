@@ -4,6 +4,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -33,18 +34,28 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
   const renderDialogContent = () => {
 
+    if (!action) return null;
+
+    const {value, label} = action
+
     return (
       <DialogContent className='shad-dialog button'>
-        <DialogHeader>
+        <DialogHeader className='flex flex-col gap-3'>
           <DialogTitle className='text-center text-light-100'>
-         
+         {label}
           </DialogTitle>
        
-          <DialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
-          </DialogDescription>
+          {value === 'rename' && (
+            <Input
+              type='text'
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          )}
         </DialogHeader>
+      {  ['rename', 'share', 'delete'].includes(value) && (
+        <DialogFooter className='flex flex-col gap-3 md:flex-row'></DialogFooter>
+        )}
       </DialogContent>
     );
   };
@@ -69,6 +80,9 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             <DropdownMenuItem
               key={item.value}
               className='shad-dropdown-item'
+              onClick={() => {
+                setAction(item);
+              }}
               // onClick={() => {
               //   setAction(item);
 

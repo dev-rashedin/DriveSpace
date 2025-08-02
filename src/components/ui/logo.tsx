@@ -27,7 +27,7 @@ const Logo = ({ type }: { type: 'sidebar' | 'mobile' | 'desktop' | 'navigation' 
         className='h-auto'
       />
       <h1
-        className={`${type === 'navigation' ? 'text-xl' : type === 'sidebar' ? 'hidden text-3xl text-brand lg:block' : 'text-3xl text-brand lg:text-4xl  lg:text-brown'} font-bold `}
+        className={`${type === 'navigation' ? 'text-xl' : type === 'sidebar' ? 'hidden text-3xl text-brown lg:block' : 'text-3xl text-brand lg:text-4xl  lg:text-brown'} font-bold `}
       >
         DriveSpace
       </h1>
