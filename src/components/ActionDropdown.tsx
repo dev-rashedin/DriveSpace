@@ -25,27 +25,21 @@ import { constructDownloadUrl, constructFileUrl } from '@/lib/utils';
 import { Input } from './ui/input';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
 
   const renderDialogContent = () => {
-    const { value, label } = action;
 
     return (
-      <DialogContent>
+      <DialogContent className='shad-dialog button'>
         <DialogHeader>
           <DialogTitle className='text-center text-light-100'>
-            {label}
+         
           </DialogTitle>
-          {value === 'rename' && (
-            <Input
-              type='text'
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          )}
+       
           <DialogDescription>
             This action cannot be undone. This will permanently delete your
             account and remove your data from our servers.
