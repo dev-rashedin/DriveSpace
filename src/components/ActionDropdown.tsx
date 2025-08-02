@@ -24,27 +24,37 @@ import { actionsDropdownItems } from '@/app/constants';
 import Link from 'next/link';
 import { constructDownloadUrl, constructFileUrl } from '@/lib/utils';
 import { Input } from './ui/input';
+import { Button } from './ui/button';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
-
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDropDownOpen, setIsDropDownOpen] = useState(false);
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const closeAllModals = () => {
+    setIsModalOpen(false);
+    setIsDropDownOpen(false);
+    setAction(null);
+    setName(file.name);
+    // setEmails([])
+  };
+
+  const handleAction = async () => {};
 
   const renderDialogContent = () => {
-
     if (!action) return null;
 
-    const {value, label} = action
+    const { value, label } = action;
 
     return (
       <DialogContent className='shad-dialog button'>
         <DialogHeader className='flex flex-col gap-3'>
           <DialogTitle className='text-center text-light-100'>
-         {label}
+            {label}
           </DialogTitle>
-       
+
           {value === 'rename' && (
             <Input
               type='text'
@@ -53,8 +63,25 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             />
           )}
         </DialogHeader>
-      {  ['rename', 'share', 'delete'].includes(value) && (
-        <DialogFooter className='flex flex-col gap-3 md:flex-row'></DialogFooter>
+        {['rename', 'share', 'delete'].includes(value) && (
+          <DialogFooter className='flex flex-col gap-3 md:flex-row'>
+            <Button variant='outline' className='border border-brand' onClick={closeAllModals}>
+              Cancel
+            </Button>
+            <Button className='bg-brand' onClick={handleAction}>
+              {isLoading ? (
+                <Image
+                  src='/assets/icons/loader.svg'
+                  alt='loader'
+                  width={24}
+                  height={24}
+                  className='animate-spin'
+                />
+              ) : (
+                <p className='capitalize'>{value}</p>
+              )}
+            </Button>
+          </DialogFooter>
         )}
       </DialogContent>
     );
