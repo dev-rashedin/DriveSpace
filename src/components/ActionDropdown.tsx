@@ -55,7 +55,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     const actions = {
       rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
-      share: () => updateFileUsers({ fileId: file.$id, path}),
+      share: () => updateFileUsers({ fileId: file.$id, emails, path}),
       delete: () => console.log('delete'),
     };
   
@@ -67,8 +67,15 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
   };
 
-  const handleRemoveUser = () => {
+  const handleRemoveUser = async(email: string) => {
+    const updatedEmails = emails.filter((e) => e !== email);
 
+    const success = await updateFileUsers({ fileId: file.$id, emails: updatedEmails, path });
+
+    if (success) {
+      setEmails(updatedEmails);
+      closeAllModals();
+  }
   }
 
   const renderDialogContent = () => {
