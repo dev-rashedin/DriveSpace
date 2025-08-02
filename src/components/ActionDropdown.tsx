@@ -89,7 +89,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
           <DialogTitle className='text-center text-light-100'>
             {label}
           </DialogTitle>
-{/* if value is rename then show input */}
+          {/* if value is rename then show input */}
           {value === 'rename' && (
             <Input
               type='text'
@@ -98,20 +98,38 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             />
           )}
 
-{/* if value is details then show file details */}
-          {value === 'details' && (
-            <FileDetails file={file} />
+          {/* if value is details then show file details */}
+          {value === 'details' && <FileDetails file={file} />}
+          {/* if value is share then show share input */}
+          {value === 'share' && (
+            <ShareInput
+              file={file}
+              onInputChange={setEmails}
+              onRemove={handleRemoveUser}
+            />
           )}
-{/* if value is share then show share input */}
-          {value === 'share' && (<ShareInput file={file} onInputChange={setEmails} onRemove={handleRemoveUser} />)}
 
+          {/* if value is delete then show delete modal */}
+          {value === 'delete' && (
+            <p className='delete-confirmation'>
+              Are you sure you want to delete{' '}
+              <span className='delete-file-name'>{file.name}</span>?
+            </p>
+          )}
         </DialogHeader>
         {['rename', 'share', 'delete'].includes(value) && (
-          <DialogFooter className='flex flex-col gap-3 md:flex-row'>
-            <Button variant='outline' className='border border-brand' onClick={closeAllModals}>
+          <DialogFooter className='mt-4 flex flex-col gap-3 md:flex-row'>
+            <Button
+              variant='outline'
+              className={`${value === 'delete' ? 'border-coral' : 'border-brand'} border`}
+              onClick={closeAllModals}
+            >
               Cancel
             </Button>
-            <Button className='bg-brand' onClick={handleAction}>
+            <Button
+              className={`${value === 'delete' ? 'bg-coral' : 'bg-brand'}`}
+              onClick={handleAction}
+            >
               {isLoading ? (
                 <Image
                   src='/assets/icons/loader.svg'

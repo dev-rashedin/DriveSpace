@@ -47,7 +47,7 @@ export const ShareInput = ({ file, onInputChange, onRemove }: Props) => {
   return (
     <>
       <ImageThumbnail file={file} />
-      <div className='share-wrapper pb-4'>
+      <div className='share-wrapper'>
         <p className='subtitle-2 pl-1 text-light-100'>
           Share file with other users
         </p>

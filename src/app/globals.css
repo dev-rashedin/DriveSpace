@@ -275,7 +275,7 @@
     @apply text-center text-light-100 !important;
   }
   .delete-file-name {
-    @apply font-medium text-brand-100 !important;
+    @apply font-semibold text-brand-200  !important;
   }
   .modal-cancel-button {
     @apply h-[52px] flex-1 rounded-full bg-white text-light-100 hover:bg-transparent !important;
