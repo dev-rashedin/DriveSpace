@@ -27,6 +27,7 @@ import { Button } from './ui/button';
 import { deleteFile, renameFile, updateFileUsers } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
 import { FileDetails, ShareInput } from './ActionsModalContent';
+import { toast } from 'sonner';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
@@ -56,7 +57,16 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
       rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
       share: () => updateFileUsers({ fileId: file.$id, emails, path}),
-      delete: () => deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path }),
+      delete: () => {
+        deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path })
+      return toast.custom((t) => (
+         <div onClick={() => toast.dismiss(t)}>
+           <p className='body-1 rounded-xl bg-coral px-4 py-2 text-white'>
+             <span className='font-semibold'>{file.name}</span> deleted successfully
+           </p>
+         </div>
+       ));
+      },
     };
   
   success = await actions[action.value as keyof typeof actions]();
@@ -127,7 +137,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               Cancel
             </Button>
             <Button
-              className={`${value === 'delete' ? 'bg-coral' : 'bg-brand'}`}
+              className={`${value === 'delete' ? 'bg-red hover:bg-coral' : 'bg-brand hover:bg-brand-200'}`}
               onClick={handleAction}
             >
               {isLoading ? (
