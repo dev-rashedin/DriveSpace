@@ -105,7 +105,7 @@ export const getFileIcon = (
     case 'webm':
     case 'm4v':
     case '3gp':
-      return '/assets/icons/file-video.svg';
+      return '/assets/icons/file-video-green.svg';
     // Audio
     case 'mp3':
     case 'mpeg':

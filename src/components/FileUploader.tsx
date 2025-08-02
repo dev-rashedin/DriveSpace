@@ -1,5 +1,5 @@
 'use client';
-import React, { MouseEvent, useCallback, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Button } from './ui/button';
 import { cn, convertFileToUrl, getFileType } from '@/lib/utils';
@@ -64,10 +64,10 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
     [ownerId, accountId, path]
   );
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   const handleRemoveFile = (
-    e: React.MouseEvent<HTMLImageElement, MouseEvent>,
+    e: React.MouseEvent<HTMLImageElement>,
     fileName: string
   ) => {
     e.stopPropagation();
@@ -104,12 +104,13 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
                     type={type}
                     extension={extension}
                     url={convertFileToUrl(file)}
+                    className='bg-brand text-brand'
                   />
 
                   <div className='preview-item-name'>
                     {file.name}
                     <Image
-                      src='/assets/icons/file-loader.gif'
+                      src='/assets/icons/file-loader-3.gif'
                       width={80}
                       height={26}
                       alt='Loader'
