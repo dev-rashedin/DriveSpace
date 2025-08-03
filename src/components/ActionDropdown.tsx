@@ -27,7 +27,7 @@ import { Button } from './ui/button';
 import { deleteFile, renameFile, updateFileUsers } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
 import { FileDetails, ShareInput } from './ActionsModalContent';
-import { toast } from 'sonner';
+import ToastMessage from './ToastMessage';
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
@@ -58,14 +58,8 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
       share: () => updateFileUsers({ fileId: file.$id, emails, path}),
       delete: () => {
-        deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path })
-      return toast.custom((t) => (
-         <div onClick={() => toast.dismiss(t)}>
-           <p className='body-1 rounded-xl bg-coral px-4 py-2 text-white'>
-             <span className='font-semibold'>{file.name}</span> deleted successfully
-           </p>
-         </div>
-       ));
+        deleteFile({ fileId: file.$id, bucketFileId: file.bucketFileId, path });
+     
       },
     };
   
@@ -73,7 +67,8 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
 
   if (success) closeAllModals();
 
-  setIsLoading(false);
+    setIsLoading(false);
+     <ToastMessage fileName={file.name} type='deleted' />;
 
   };
 
