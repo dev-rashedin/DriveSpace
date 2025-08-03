@@ -5,13 +5,15 @@ import { getFileTypesParams } from "@/lib/utils";
 import { Models } from "node-appwrite";
 
 
-const page = async({ params }: SearchParamProps) => {
+const page = async({ params, searchParams }: SearchParamProps) => {
   
-  const type = ((await params)?.type as string) || '';
+  const type = ((await params)?.type as string) || ''; 
+  const searchText = ((await searchParams)?.query) as string;
+  const sort = ((await searchParams)?.sort) as string;
 
-  const types = getFileTypesParams(type) as FileType[]
+  const types = getFileTypesParams(type) as FileType[];
 
-  const files = await getFiles({types})
+  const files = await getFiles({types, searchText, sort})
   
 
   return (
