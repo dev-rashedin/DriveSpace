@@ -9,6 +9,7 @@ import { MAX_FILE_SIZE } from '@/app/constants';
 import { toast } from 'sonner';
 import { uploadFile } from '@/lib/actions/file.actions';
 import { usePathname } from 'next/navigation';
+import { showToast } from './ToastMessage';
 
 interface Props {
   ownerId: string;
@@ -46,14 +47,7 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
               setFiles((prevFiles) =>
                 prevFiles.filter((f) => f.name !== file.name)
               );
-              toast.custom((t) => (
-                <div className='success-toast' onClick={() => toast.dismiss(t)}>
-                  <p className='body-1 text-white'>
-                    <span className='font-semibold'>{file.name}</span> uploaded
-                    successfully.
-                  </p>
-                </div>
-              ));
+             showToast(file.name, 'uploade')
             }
           }
         );

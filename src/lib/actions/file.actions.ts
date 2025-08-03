@@ -15,13 +15,15 @@ const handleError = (error: unknown, message: string) => {
 };
 
 // queries
-const createQueries = (currentUser: Models.Document) => {
+const createQueries = (currentUser: Models.Document, types: string[]) => {
   const queries = [
     Query.or([
       Query.equal('owner', [currentUser.$id]),
       Query.contains('users', [currentUser.email]),
     ]),
   ];
+
+  if(types.length > 0) queries.push(Query.equal('type', types));
 
   return queries;
 };
@@ -76,7 +78,7 @@ export const uploadFile = async ({
 };
 
 // get file from appwrite
-export const getFiles = async (fileId: string) => {
+export const getFiles = async ({types = []} : GetFilesProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -84,7 +86,7 @@ export const getFiles = async (fileId: string) => {
 
     if (!currentUser) throw new Error('User not found');
 
-    const queries = createQueries(currentUser);
+    const queries = createQueries(currentUser, types);
 
     // console.log('current user', currentUser);
 

@@ -1,10 +1,6 @@
 import { toast } from 'sonner';
 
-/**
- * Custom toast function.
- * @param fileName - The name of the file or entity.
- * @param type - The action type (e.g., "uploaded", "deleted").
- */
+
 export const showToast = (fileName: string, type: string) => {
   toast.custom((t) => (
     <div onClick={() => toast.dismiss(t)} className='cursor-pointer'>
