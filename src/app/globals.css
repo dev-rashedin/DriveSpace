@@ -162,7 +162,7 @@
   }
 
   .form-item {
-    @apply flex h-[78px] flex-col justify-center rounded-xl border border-gray-700 px-4 shadow-drop-1;
+    @apply flex h-[78px] flex-col justify-center rounded-2xl border border-gray-700 px-4 shadow-drop-1;
   }
   .form-label {
     @apply text-light-100 pt-2 body-2 w-full !important;
@@ -171,7 +171,7 @@
     @apply text-red body-2 ml-4 !important;
   }
   .alert-dialog {
-    @apply space-y-4 max-w-[95%]  sm:w-fit rounded-xl lg:rounded-2xl  px-4 md:px-8 py-10 bg-white outline-none !important;
+    @apply space-y-4 max-w-[95%]  sm:w-fit rounded-2xl lg:rounded-2xl  px-4 md:px-8 py-10 bg-white outline-none !important;
   }
   .otp-submit-btn {
     @apply bg-brand button hover:bg-brand-100 transition-all rounded-lg !important;
@@ -180,14 +180,15 @@
     @apply w-full flex gap-1 sm:gap-2 justify-between !important;
   }
   .shad-otp-slot {
-    @apply text-[40px] font-medium rounded-xl ring-brand shadow text-brand-100 justify-center flex border-2 border-gray-200 size-12 md:size-16 gap-5 !important;
+    @apply text-[40px] font-medium rounded-2xl ring-brand shadow text-brand-100 justify-center flex border-2 border-gray-200 size-12 md:size-16 gap-5 !important;
   }
 
   .shad-sheet {
     @apply pt-0 !important;
   }
   .shad-sheet button,
-  .shad-dialog button {-o-animation: ;
+  .shad-dialog button {
+    -o-animation:;
     @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-dropdown-item {
@@ -205,7 +206,7 @@
 
   /* Sidebar & MobileNavigation */
   .nav-icon {
-    @apply  w-6 filter !important;
+    @apply w-6 filter !important;
   }
   .nav-icon-active {
     @apply invert opacity-90 !important;
@@ -215,7 +216,7 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-white px-5 py-7 sm:mr-7 lg:mx-4 xl:mx-8 sm:rounded-[30px] md:mb-7 md:px-9 md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-white px-5 py-7 sm:mr-7 lg:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-9 md:py-10 !important;
   }
 
   /* Dashboard */
@@ -269,7 +270,7 @@
 
   /* ActionsDropdown */
   .rename-input-field {
-    @apply body-2 shad-no-focus h-[52px] w-full rounded-full border px-4 shadow-drop-1 !important;
+    @apply body-2 shad-no-focus h-[52px] w-full rounded-2xl border px-4 shadow-drop-1 !important;
   }
   .delete-confirmation {
     @apply text-center text-light-100 !important;
@@ -278,7 +279,7 @@
     @apply font-semibold text-brand-200  !important;
   }
   .modal-cancel-button {
-    @apply h-[52px] flex-1 rounded-full bg-white text-light-100 hover:bg-transparent !important;
+    @apply h-[52px] flex-1 rounded-2xl bg-white text-light-100 hover:bg-transparent !important;
   }
   .modal-submit-button {
     @apply primary-btn !mx-0 h-[52px] w-full flex-1 !important;
@@ -286,7 +287,7 @@
 
   /* ActionsModalContent */
   .file-details-thumbnail {
-    @apply !mb-1 flex items-center gap-3 rounded-xl border border-light-200/40 bg-light-400/50 p-3 !important;
+    @apply !mb-1 flex items-center gap-3 rounded-2xl border border-light-200/40 bg-light-400/50 p-3 !important;
   }
   .file-details-label {
     @apply body-2 w-[30%] text-light-100 !important;
@@ -299,13 +300,13 @@
     @apply !mt-2 space-y-2 !important;
   }
   .share-input-field {
-    @apply body-2 shad-no-focus h-[52px] w-full rounded-xl border px-4 shadow-drop-1 !important;
+    @apply body-2 shad-no-focus h-[52px] w-full rounded-2xl border px-4 shadow-drop-1 !important;
   }
   .share-remove-user {
-    @apply rounded-full bg-transparent text-light-100 shadow-none hover:bg-transparent !important;
+    @apply rounded-2xl bg-transparent text-light-100 shadow-none hover:bg-transparent !important;
   }
   .remove-icon {
-    @apply aspect-square rounded-full !important;
+    @apply aspect-square rounded-2xl !important;
   }
 
   /* AuthForm */
@@ -319,7 +320,7 @@
     @apply primary-btn h-[60px] !important;
   }
   .error-message {
-    @apply body-2 mx-auto w-fit rounded-xl bg-error/5 px-8 py-4 text-center text-error !important;
+    @apply body-2 mx-auto w-fit rounded-2xl bg-error/5 px-8 py-4 text-center text-error !important;
   }
 
   /* Card */
@@ -361,7 +362,7 @@
     @apply fixed bottom-10 right-10 z-50 flex size-full h-fit max-w-[480px] flex-col gap-3 rounded-[20px] bg-white p-7 shadow-drop-3 !important;
   }
   .uploader-preview-item {
-    @apply flex items-center justify-between  gap-3 rounded-xl p-3 shadow-drop-3 !important;
+    @apply flex items-center justify-between  gap-3 rounded-2xl p-3 shadow-drop-3 !important;
   }
   .preview-item-name {
     @apply subtitle-2 flex flex-col gap-1 mb-2 line-clamp-1 max-w-[300px] !important;
@@ -382,7 +383,7 @@
     @apply flex-center min-w-fit gap-4 !important;
   }
   .sign-out-button {
-    @apply flex-center h-[52px] min-w-[54px] items-center rounded-full bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
+    @apply flex-center h-[52px] min-w-[54px] items-center rounded-2xl bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
   }
 
   /* Mobile Navigation */
@@ -390,10 +391,10 @@
     @apply flex h-[60px] justify-between px-5 sm:hidden !important;
   }
   .header-user {
-    @apply my-3 flex items-center gap-2 rounded-full p-1 text-light-100 sm:justify-center sm:bg-brand/10 lg:justify-start lg:p-3 !important;
+    @apply my-3 flex items-center gap-2 rounded-2xl p-1 text-light-100 sm:justify-center sm:bg-brand/10 lg:justify-start lg:p-3 !important;
   }
   .header-user-avatar {
-    @apply aspect-square w-10 rounded-full object-cover !important;
+    @apply aspect-square w-10 rounded-2xl object-cover !important;
   }
   .mobile-nav {
     @apply h5 flex-1 gap-1 text-brand !important;
@@ -402,23 +403,23 @@
     @apply flex flex-1 flex-col gap-4 !important;
   }
   .mobile-nav-item {
-    @apply flex text-light-100 gap-4 w-full justify-start items-center h5 px-6 h-[52px] rounded-full !important;
+    @apply flex text-light-100 gap-4 w-full justify-start items-center h5 px-6 h-[52px] rounded-2xl !important;
   }
   .mobile-sign-out-button {
-    @apply h5 flex h-[52px] w-full items-center gap-4 rounded-full bg-brand/10 px-6 text-brand shadow-none transition-all hover:bg-brand/20 !important;
+    @apply h5 flex h-[52px] w-full items-center gap-4 rounded-2xl bg-brand/10 px-6 text-brand shadow-none transition-all hover:bg-brand/20 !important;
   }
 
   /* OTP Modal */
   .otp-close-button {
-    @apply absolute -right-4 -top-10 size-8 md:-right-8 flex-center cursor-pointer border-2  border-coral text-coral text-lg rounded-full  !important;
+    @apply absolute -right-4 -top-10 size-8 md:-right-8 flex-center cursor-pointer border-2  border-coral text-coral text-lg rounded-2xl  !important;
   }
 
   /* Search */
   .search {
-    @apply relative w-full  md:max-w-[480px] !important;
+    @apply relative w-full md:max-w-[480px] !important;
   }
   .search-input-wrapper {
-    @apply flex h-[52px] flex-1 items-center gap-3 bg-white rounded-xl px-4 shadow-drop-3 !important;
+    @apply flex h-[52px] flex-1 items-center lg:ml-2 gap-3 bg-white rounded-2xl px-4 shadow-drop-3 !important;
   }
   .search-input {
     @apply body-2 shad-no-focus  placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-gray-500 !important;
@@ -438,13 +439,13 @@
     @apply h5 mt-9 flex-1 gap-1 text-brand !important;
   }
   .sidebar-nav-item {
-    @apply flex text-white gap-4 rounded-xl lg:w-full justify-center lg:justify-start items-center h5 lg:px-[30px] h-[52px] lg:rounded-full !important;
+    @apply flex text-white gap-4 rounded-2xl lg:w-full justify-center lg:justify-start items-center h5 lg:px-[30px] h-[52px] lg:rounded-2xl !important;
   }
   .sidebar-user-info {
-    @apply mt-4 flex items-center justify-center gap-2 rounded-full bg-brand/10 p-1 text-light-100 lg:justify-start lg:p-3 !important;
+    @apply mt-4 flex items-center justify-center gap-2 rounded-2xl bg-brand/10 p-1 text-light-100 lg:justify-start lg:p-3 !important;
   }
   .sidebar-user-avatar {
-    @apply aspect-square w-10 rounded-full object-cover !important;
+    @apply aspect-square w-10 rounded-2xl object-cover !important;
   }
 
   .nav-active {
@@ -461,7 +462,7 @@
 
   /* Thumbnail */
   .thumbnail {
-    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-brand/10;
+    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-2xl bg-brand/10;
   }
   .thumbnail-image {
     @apply size-full object-cover object-center !important;

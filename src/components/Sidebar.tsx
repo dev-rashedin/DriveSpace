@@ -19,7 +19,7 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
   return (
     <aside className='sidebar'>
       {/* logo for sidebar */}
-      <div className='flex h-[50px] items-center rounded-full'>
+      <div className='flex h-[50px] items-center rounded-2xl'>
         <Logo type='sidebar' />
       </div>
 
@@ -60,7 +60,7 @@ const Sidebar = ({ fullName, avatar, email }: Props) => {
 
       <div className='sidebar-user-info'>
         <Image
-          src={avatar }
+          src={avatar}
           alt='Avatar'
           width={44}
           height={44}
