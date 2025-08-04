@@ -424,7 +424,7 @@
     @apply body-2 shad-no-focus  placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-gray-500 !important;
   }
   .search-result {
-    @apply absolute left-0 top-16 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white border border-b-4 border-r-4  p-4 !important;
+    @apply absolute left-0 top-16 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white border border-b-4 border-r-4  p-4 max-h-[80vh] overflow-y-auto shadow-drop-3 !important;
   }
   .empty-result {
     @apply body-2 text-center text-light-100 !important;

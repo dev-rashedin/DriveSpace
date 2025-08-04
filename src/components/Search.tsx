@@ -2,14 +2,15 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Input } from './ui/input';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { getFiles } from '@/lib/actions/file.actions';
 import { Models } from 'node-appwrite';
 import FormattedDateTime from './FormattedDateTime';
 import Thumbnail from './Thumbnail';
 
 const Search = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const path = usePathname()
   const searchParams = useSearchParams()
   const searchQuery = searchParams.get('query') || '';
 
@@ -17,9 +18,16 @@ const Search = () => {
   const [results, setResults] = useState<Models.Document[]>([]);
   const [open, setOpen] = useState(false);
 
-
+// fetching files from db
   useEffect(() => {
-   const fetchFiles = async () => {
+    const fetchFiles = async () => {
+     
+      if (!query) {
+        setResults([]);
+        setOpen(false);
+        return router.push(path.replace(searchParams.toString(), ''));
+      }
+
      const files = await getFiles({ searchText: query });
      setResults(files.documents);
      setOpen(true)
