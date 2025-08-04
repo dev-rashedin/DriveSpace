@@ -30,14 +30,14 @@ const createQueries = (
   ];
 
   if (types.length > 0) queries.push(Query.equal('type', types));
-    if (searchText) queries.push(Query.contains('name', searchText));
-    if (limit) queries.push(Query.limit(limit));
+  if (searchText) queries.push(Query.contains('name', searchText));
+  if (limit) queries.push(Query.limit(limit));
 
-     if (sort) {
-    const [sortBy, orderBy] = sort.split("-");
+  if (sort) {
+    const [sortBy, orderBy] = sort.split('-');
 
     queries.push(
-      orderBy === "asc" ? Query.orderAsc(sortBy) : Query.orderDesc(sortBy),
+      orderBy === 'asc' ? Query.orderAsc(sortBy) : Query.orderDesc(sortBy)
     );
   }
 
@@ -94,7 +94,12 @@ export const uploadFile = async ({
 };
 
 // get file from appwrite
-export const getFiles = async ({types = [], searchText = '', sort = '$createdAt-desc', limit} : GetFilesProps) => {
+export const getFiles = async ({
+  types = [],
+  searchText = '',
+  sort = '$createdAt-desc',
+  limit,
+}: GetFilesProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -102,17 +107,23 @@ export const getFiles = async ({types = [], searchText = '', sort = '$createdAt-
 
     if (!currentUser) throw new Error('User not found');
 
-    const queries = createQueries(currentUser, types, searchText, sort, limit);
+      const queries = createQueries(
+        currentUser,
+        types,
+        searchText,
+        sort,
+        limit
+      );
 
     // console.log('current user', currentUser);
 
     // console.log('queries', queries);
 
-    const files = await databases.listDocuments(
-      appwriteConfig.databaseId,
-      appwriteConfig.filesCollectionId,
-      queries
-    );
+   const files = await databases.listDocuments(
+     appwriteConfig.databaseId,
+     appwriteConfig.filesCollectionId,
+     queries
+   );
 
     // console.log('files', files);
 
@@ -189,7 +200,7 @@ export const deleteFile = async ({
     const deletedFile = await databases.deleteDocument(
       appwriteConfig.databaseId,
       appwriteConfig.filesCollectionId,
-      fileId,
+      fileId
     );
 
     if (deletedFile) {
@@ -198,7 +209,7 @@ export const deleteFile = async ({
 
     revalidatePath(path);
 
-    return parseStringify({status: 'success'});
+    return parseStringify({ status: 'success' });
   } catch (error) {
     handleError(error, 'Failed to delete file');
   }
