@@ -76,7 +76,7 @@ export const Chart = ({ used = 0 }: { used: number }) => {
                         <tspan
                           x={viewBox.cx}
                           y={(viewBox.cy || 0) + 24}
-                          className='fill-white/70'
+                          className='mt-2 fill-white/80'
                         >
                           Space used
                         </tspan>

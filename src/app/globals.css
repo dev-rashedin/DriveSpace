@@ -219,7 +219,7 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-white px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-4 border border-brand md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-offWhite px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-5 md:px-4 border border-brand/20 md:py-3 !important;
   }
 
   /* Dashboard */
@@ -328,7 +328,7 @@
 
   /* Card */
   .file-card {
-    @apply flex cursor-pointer flex-col gap-6 rounded-[18px]  border border-light-200 p-5 shadow-sm transition-all hover:shadow-drop-3 !important;
+    @apply flex cursor-pointer flex-col gap-6 rounded-[18px]  border border-brand bg-white p-5 shadow-sm transition-all hover:shadow-drop-3 !important;
   }
   .file-card-details {
     @apply flex flex-col gap-2 text-light-100 !important;
@@ -351,10 +351,10 @@
     @apply fill-white text-4xl font-bold !important;
   }
   .chart-title {
-    @apply h3 font-bold md:text-center lg:text-left !important;
+    @apply h2 font-bold md:text-center lg:text-left !important;
   }
   .chart-description {
-    @apply subtitle-1 mt-2 w-full text-white/70 md:text-center lg:text-left !important;
+    @apply h4 mt-2 w-full text-brand-200 md:text-center lg:text-left !important;
   }
 
   /* FileUploader */
