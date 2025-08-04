@@ -188,7 +188,6 @@
   }
   .shad-sheet button,
   .shad-dialog button {
-    -o-animation:;
     @apply focus:ring-0 focus:ring-offset-0 focus-visible:border-none outline-none focus-visible:outline-none focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
   }
   .shad-dropdown-item {
@@ -425,7 +424,7 @@
     @apply body-2 shad-no-focus  placeholder:body-1 w-full border-none p-0 shadow-none placeholder:text-gray-500 !important;
   }
   .search-result {
-    @apply absolute left-0 top-16 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white p-4 !important;
+    @apply absolute left-0 top-16 z-50 flex w-full flex-col gap-3 rounded-[20px] bg-white border border-b-4 border-r-4  p-4 !important;
   }
   .empty-result {
     @apply body-2 text-center text-light-100 !important;
@@ -462,7 +461,7 @@
 
   /* Thumbnail */
   .thumbnail {
-    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-2xl bg-brand/10;
+    @apply flex-center size-[50px] min-w-[50px] overflow-hidden rounded-full bg-brand/10;
   }
   .thumbnail-image {
     @apply size-full object-cover object-center !important;

@@ -2,16 +2,18 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { Input } from './ui/input';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { getFiles } from '@/lib/actions/file.actions';
 import { Models } from 'node-appwrite';
 import FormattedDateTime from './FormattedDateTime';
 import Thumbnail from './Thumbnail';
 
 const Search = () => {
+  const router = useRouter()
   const searchParams = useSearchParams()
-  const [query, setQuery] = useState('');
   const searchQuery = searchParams.get('query') || '';
+
+  const [query, setQuery] = useState('');
   const [results, setResults] = useState<Models.Document[]>([]);
   const [open, setOpen] = useState(false);
 
@@ -33,6 +35,15 @@ const Search = () => {
     setQuery('');
   }
   }, [searchQuery]);
+
+  // handle click item
+  const handleClickItem = (file: Models.Document) => {
+    setOpen(false);
+    setResults([]);
+    router.push(
+      `/${file.type === 'video' || file.type === 'audio' ? 'media' : file.type + 's'}?query=${query}`
+    );
+  };
   
   return (
     <div className='search'>
@@ -51,13 +62,13 @@ const Search = () => {
         />
 
         {open && (
-          <ul className='search-result'>
+          <ul className='search-result'> 
             {results.length > 0 ? (
               results.map((file) => (
                 <li
                   className='flex items-center justify-between'
                   key={file.$id}
-                  // onClick={() => handleClickItem(file)}
+                  onClick={() => handleClickItem(file)}
                 >
                   <div className='flex cursor-pointer items-center gap-4'>
                     <Thumbnail
