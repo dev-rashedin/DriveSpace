@@ -36,7 +36,7 @@ const Search = () => {
     }
     
     fetchFiles();
-  }, [debouncedQuery]);
+  }, [debouncedQuery, path, router, searchParams]);
 
   // reset search query
   useEffect(() => {

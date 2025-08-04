@@ -376,13 +376,13 @@
 
   /* Header */
   .header {
-    @apply hidden items-center justify-between gap-5 p-5 sm:flex lg:py-7 xl:gap-10 !important;
+    @apply hidden items-center justify-between py-5 px-3 lg:px-1 sm:flex gap-12 lg:py-7 !important;
   }
   .header-wrapper {
-    @apply flex-center min-w-fit gap-4 !important;
+    @apply flex-center min-w-fit  py-2 shadow-drop-1 gap-4 lg:gap-1  !important;
   }
   .sign-out-button {
-    @apply flex-center h-[52px] min-w-[54px] items-center rounded-2xl bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
+    @apply flex-center h-[52px] min-w-[60px] items-center rounded-2xl bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
   }
 
   /* Mobile Navigation */
@@ -415,7 +415,7 @@
 
   /* Search */
   .search {
-    @apply relative w-full md:max-w-[480px] !important;
+    @apply relative w-full sm:max-w-[300px] lg:max-w-[350px] xl:max-w-[480px] !important;
   }
   .search-input-wrapper {
     @apply flex h-[52px] flex-1 items-center lg:ml-2 gap-3 bg-white rounded-2xl px-4 shadow-drop-3 !important;
@@ -472,12 +472,27 @@
     @apply size-full object-cover object-center !important;
   }
 
- @media (min-width: 768px) {
+  @media (min-width: 768px) {
+    .header {
+      @apply mx-1;
+    }
     .uploader-button {
-    @apply primary-btn h-[52px] gap-4 px-10 shadow-drop-1 !important;
+      @apply primary-btn h-[52px] gap-4 px-10 shadow-drop-1 !important;
+    }
   }
-  } 
 
+  @media (min-width: 1024px) {
+    .header-wrapper {
+      @apply mx-2;
+    }
+    
+  }
+
+  @media (min-width: 1280px) {
+    .header {
+      @apply mx-5;
+    }
+  }
 }
 
 @layer base {

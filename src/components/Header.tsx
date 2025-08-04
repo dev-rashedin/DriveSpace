@@ -22,7 +22,7 @@ const Header = ({ userId, accountId }: { userId: string; accountId: string }) =>
               alt='logo'
               width={24}
               height={24}
-              className='w-6'
+              className='w-8'
             />
           </Button>
         </form>
