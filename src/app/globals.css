@@ -184,7 +184,7 @@
   }
 
   .sheet-drawer {
-    @apply pt-0 flex flex-col justify-between bg-brand text-white remove-scrollbar max-w-72 !important;
+    @apply pt-0 flex flex-col justify-between bg-brand text-white remove-scrollbar border-transparent max-w-[260px] !important;
   }
   .sheet-drawer button,
   .shad-dialog button {
@@ -215,7 +215,7 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-white px-5 py-7 sm:mr-7 lg:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-9 md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-lime sm:bg-white px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-9 md:py-10 !important;
   }
 
   /* Dashboard */
@@ -355,7 +355,7 @@
 
   /* FileUploader */
   .uploader-button {
-    @apply primary-btn h-[52px] gap-2 px-10 shadow-drop-1 !important;
+    @apply rounded-2xl bg-brand-100 hover:bg-brand-200 text-white  h-[52px] gap-4 px-10 shadow-drop-1 !important;
   }
   .uploader-preview-list {
     @apply fixed bottom-10 right-10 z-50 flex size-full h-fit max-w-[480px] flex-col gap-3 rounded-[20px] bg-white p-7 shadow-drop-3 !important;
@@ -387,7 +387,7 @@
 
   /* Mobile Navigation */
   .mobile-header {
-    @apply flex h-[60px] justify-between px-5 sm:hidden !important;
+    @apply flex h-[65px] justify-between px-5 bg-brand sm:hidden !important;
   }
   .header-user {
     @apply my-3 flex items-center gap-2 rounded-2xl p-1 text-white sm:justify-center sm:bg-brand/10 lg:justify-start lg:p-3 !important;
@@ -405,7 +405,7 @@
     @apply flex text-white gap-4 w-full justify-start items-center h5 px-6 h-[52px] rounded-2xl !important;
   }
   .mobile-sign-out-button {
-    @apply h5 flex h-[52px] w-full items-center gap-4 rounded-2xl bg-brand/10 px-6 text-brand shadow-none transition-all hover:bg-brand/20 !important;
+    @apply h5 flex h-[52px] w-full items-center gap-4 rounded-2xl bg-light-400 px-6 text-coral hover:bg-light-200 shadow-none transition-all !important;
   }
 
   /* OTP Modal */
@@ -471,6 +471,13 @@
   .thumbnail-image {
     @apply size-full object-cover object-center !important;
   }
+
+ @media (min-width: 768px) {
+    .uploader-button {
+    @apply primary-btn h-[52px] gap-4 px-10 shadow-drop-1 !important;
+  }
+  } 
+
 }
 
 @layer base {

@@ -71,14 +71,14 @@ const FileUploader = ({ ownerId, accountId, className }: Props) => {
   return (
     <div {...getRootProps()} className='cursor-pointer'>
       <input {...getInputProps()} />
-      <Button type='button' className={cn('uploader-button', className)}>
+      <Button type='button' className={cn('uploader-button', className, 'w-full')}>
         <Image
           src='/assets/icons/upload.svg'
           alt='upload'
           width={24}
           height={24}
         />{' '}
-        <p>Upload</p>
+        <p className='body-1'>Upload</p>
       </Button>
 
       {files.length > 0 && (
