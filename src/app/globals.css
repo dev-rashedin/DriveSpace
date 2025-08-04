@@ -143,6 +143,10 @@
     @apply flex items-center justify-center;
   }
 
+  .main-border {
+    @apply border border-r-4 border-b-4 border-brand
+  }
+
   /* =====  SHADCN OVERRIDES */
   .shad-no-focus {
     @apply outline-none ring-offset-transparent focus:ring-transparent focus:ring-offset-0 focus-visible:outline-none focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 !important;
@@ -215,7 +219,7 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-lime sm:bg-white px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-9 md:py-10 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-white px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-7 md:px-4 border border-brand md:py-10 !important;
   }
 
   /* Dashboard */
@@ -226,7 +230,7 @@
     @apply mt-6 grid grid-cols-1 gap-4 xl:mt-10 xl:grid-cols-2 xl:gap-9 !important;
   }
   .dashboard-summary-card {
-    @apply relative mt-6 rounded-[20px] bg-white p-5 transition-all hover:scale-105 !important;
+    @apply relative mt-6 rounded-[20px] bg-white main-border p-5 transition-all hover:scale-105 !important;
   }
   .summary-type-icon {
     @apply absolute -left-3 top-[-25px] z-10 w-[190px] object-contain !important;
@@ -332,7 +336,7 @@
 
   /* Chart */
   .chart {
-    @apply flex items-center rounded-[20px] bg-brand p-5 text-white md:flex-col xl:flex-row !important;
+    @apply flex items-center justify-between rounded-2xl bg-white main-border p-5 text-brand md:flex-col xl:flex-row !important;
   }
   .chart-container {
     @apply mx-auto aspect-square w-[180px] text-white xl:w-[250px] !important;

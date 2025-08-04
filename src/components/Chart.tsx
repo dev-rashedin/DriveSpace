@@ -8,7 +8,25 @@ import {
   RadialBarChart,
 } from 'recharts';
 
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
+import { ChartConfig, ChartContainer } from '@/components/ui/chart';
+import { calculatePercentage, convertFileSize } from '@/lib/utils';
 
+const chartConfig = {
+  size: {
+    label: 'Size',
+  },
+  used: {
+    label: 'Used',
+    color: 'white',
+  },
+} satisfies ChartConfig;
 
 export const Chart = ({ used = 0 }: { used: number }) => {
   const chartData = [{ storage: 'used', 10: used, fill: 'white' }];
