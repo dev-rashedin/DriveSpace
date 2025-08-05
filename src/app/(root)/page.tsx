@@ -13,7 +13,7 @@ import { convertFileSize, getUsageSummary } from '@/lib/utils';
 const Dashboard = async () => {
   // Parallel requests
   const [files, totalSpace] = await Promise.all([
-    getFiles({ types: [], limit: 10 }),
+    getFiles({ types: [], limit: 9 }),
     getTotalSpaceUsed(),
   ]);
 
@@ -51,7 +51,7 @@ const Dashboard = async () => {
                 </div>
 
                 <h5 className='summary-type-title'>{summary.title}</h5>
-                <Separator className='bg-light-400' />
+                <Separator className='bg-light-200/70' />
                 <FormattedDateTime
                   date={summary.latestDate}
                   className='text-center'

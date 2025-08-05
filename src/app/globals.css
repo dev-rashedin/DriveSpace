@@ -219,12 +219,12 @@
 
   /* Root Layout */
   .main-content {
-    @apply remove-scrollbar h-full flex-1 overflow-auto bg-offWhite px-5 py-7 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-5 md:px-4 border border-brand/20 md:py-3 !important;
+    @apply remove-scrollbar h-full flex-1 overflow-auto bg-offWhite px-5 pt-7 pb-5 sm:mx-4 xl:mx-8 sm:rounded-2xl md:mb-5 md:px-4 border border-brand/20  !important;
   }
 
   /* Dashboard */
   .dashboard-container {
-    @apply mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-2 xl:gap-10 !important;
+    @apply container mx-auto grid  grid-cols-1 gap-6 md:grid-cols-2 xl:gap-10 !important;
   }
   .dashboard-summary-list {
     @apply mt-6 grid grid-cols-1 gap-4 xl:mt-10 xl:grid-cols-2 xl:gap-9 !important;
@@ -336,10 +336,10 @@
 
   /* Chart */
   .chart {
-    @apply flex items-center justify-between rounded-2xl bg-white main-border p-5 text-brand md:flex-col xl:flex-row !important;
+    @apply flex items-center justify-between rounded-2xl bg-white main-border p-5 md:flex-col xl:flex-row !important;
   }
   .chart-container {
-    @apply mx-auto aspect-square w-[180px] text-white xl:w-[250px] !important;
+    @apply mx-auto aspect-square w-[180px] text-black xl:w-[250px] !important;
   }
   .polar-grid {
     @apply first:fill-white/20 last:fill-brand !important;
@@ -354,7 +354,7 @@
     @apply h2 font-bold md:text-center lg:text-left !important;
   }
   .chart-description {
-    @apply h4 mt-2 w-full text-brand-200 md:text-center lg:text-left !important;
+    @apply h4 mt-2 w-full md:text-center lg:text-left !important;
   }
 
   /* FileUploader */
@@ -383,7 +383,7 @@
     @apply hidden items-center justify-between py-5 px-3 lg:px-1 sm:flex gap-12 lg:py-7 !important;
   }
   .header-wrapper {
-    @apply flex-center min-w-fit  py-2 shadow-drop-1 gap-4 lg:gap-1  !important;
+    @apply flex-center min-w-fit  py-2 gap-4 lg:gap-1  !important;
   }
   .sign-out-button {
     @apply flex-center h-[52px] min-w-[60px] items-center rounded-2xl bg-brand/10 p-0 text-brand shadow-none transition-all hover:bg-brand/20 !important;
